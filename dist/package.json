@@ -1,0 +1,17 @@
+{
+    "version": "1.0.0",
+    "author": {"name":"David Vila","email":"davidvila95@gmail.com"},
+    "resources": [
+        {
+            "resourceId": "rId0",
+            "sourceType": 5,
+            "file": "resources/rankingGrid5026DF9488DA4528B23667923CEF3213.pbiviz.json"
+        }
+    ],
+    "visual": {"name":"rankingGrid","displayName":"RankingGrid","guid":"rankingGrid5026DF9488DA4528B23667923CEF3213","visualClassName":"Visual","version":"1.0.0","description":"Ranking Grid","supportUrl":"https://github.com/davidvalv/rankingGrid","gitHubUrl":"https://github.com/davidvalv/rankingGrid"},
+    "metadata": {
+        "pbivizjson": {
+            "resourceId": "rId0"
+        }
+    }  
+}

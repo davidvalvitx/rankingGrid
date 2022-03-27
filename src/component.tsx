@@ -50,7 +50,7 @@ export class RankingGrid extends React.Component<{}, State>{
                                         <p>{this.state.Ranking[i]}</p>
                                     </div>
                                     <div className='label'>
-                                        <p>{this.state.KPI[i]}</p>
+                                        <p>{this.state.KPI[i].toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}</p>
                                     </div>
                                     <img key={i} className='foto' src={x} alt="" />
                                 </div>

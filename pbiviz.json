@@ -5,14 +5,14 @@
         "guid": "rankingGrid5026DF9488DA4528B23667923CEF3213",
         "visualClassName": "Visual",
         "version": "1.0.0",
-        "description": "",
-        "supportUrl": "",
-        "gitHubUrl": ""
+        "description": "Ranking Grid",
+        "supportUrl": "https://github.com/davidvalv/rankingGrid",
+        "gitHubUrl": "https://github.com/davidvalv/rankingGrid"
     },
     "apiVersion": "3.8.0",
     "author": {
-        "name": "",
-        "email": ""
+        "name": "David Vila",
+        "email": "davidvila95@gmail.com"
     },
     "assets": {
         "icon": "assets/icon.png"
