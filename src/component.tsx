@@ -3,13 +3,15 @@ import * as React from "react";
 export interface State {
     Imagen: string[],
     KPI: number[],
-    Ranking: number[]
+    Ranking: number[],
+    ISelectionId: number[]
 }
 
 export const initialState: State = {
     Imagen: [""],
     KPI: [0],
-    Ranking: [0]
+    Ranking: [],
+    ISelectionId: []
 }
 
 
@@ -24,7 +26,6 @@ export class RankingGrid extends React.Component<{}, State>{
     public static update(newState: State) {
         if (typeof RankingGrid.updateCallback === 'function') {
             RankingGrid.updateCallback(newState);
-            console.log(newState)
         }
     }
 
@@ -45,7 +46,7 @@ export class RankingGrid extends React.Component<{}, State>{
                     {this.state.Imagen.map(
                         (x, i) => {
                             return (
-                                <div className='recuadro'>
+                                <div className='recuadro' key={i} >
                                     <div className='rank'>
                                         <p>{this.state.Ranking[i]}</p>
                                     </div>
