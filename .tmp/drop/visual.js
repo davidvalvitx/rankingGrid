@@ -38,17 +38,50 @@ class RankingGrid extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     render() {
         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "App" },
             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'contenedor' }, this.state.Imagen.map((x, i) => {
-                return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'recuadro', key: i },
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'rank' },
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.state.Ranking[i])),
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'label' },
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.state.KPI[i].toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 }))),
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { key: i, className: 'foto', src: x, alt: "" })));
+                return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "producto" },
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "imagen" },
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { key: i, className: 'foto', src: x, alt: "" })),
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'recuadro', key: i },
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'rank' },
+                            react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.state.Ranking[i])),
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'label' },
+                            react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.state.KPI[i].toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })))),
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "marcas" },
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "dr" }),
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "dr" }))));
             }))));
     }
 }
 RankingGrid.updateCallback = null;
 /* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ((/* unused pure expression or super */ null && (RankingGrid)));
+
+
+/***/ }),
+
+/***/ 746:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "J": () => (/* binding */ VisualSettings)
+/* harmony export */ });
+/* unused harmony export colorinchisSettings */
+/* harmony import */ var powerbi_visuals_utils_dataviewutils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(554);
+
+
+var DataViewObjectsParser = powerbi_visuals_utils_dataviewutils__WEBPACK_IMPORTED_MODULE_0__/* .DataViewObjectsParser */ .U;
+class colorinchisSettings {
+    constructor() {
+        // Default color
+        this.color = "#5555FF";
+        this.showAllDataPoints = true;
+    }
+}
+class VisualSettings extends DataViewObjectsParser {
+    constructor() {
+        super(...arguments);
+        this.colors = new colorinchisSettings();
+    }
+}
 
 
 /***/ }),
@@ -62,6 +95,8 @@ RankingGrid.updateCallback = null;
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(294);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(935);
 /* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(423);
+/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(746);
+
 
 
 
@@ -73,11 +108,17 @@ class Visual {
         this.host = options.host;
         this.selectionManager = this.host.createSelectionManager();
         this.selectionIdBuilder = options.host.createSelectionIdBuilder();
+        this.visualSettings = _settings__WEBPACK_IMPORTED_MODULE_3__/* .VisualSettings.getDefault */ .J.getDefault();
         options.element.style.overflow = 'auto';
         react_dom__WEBPACK_IMPORTED_MODULE_1__.render(this.reactRoot, this.target);
     }
     clear() {
         _component__WEBPACK_IMPORTED_MODULE_2__/* .RankingGrid.update */ .pt.update(_component__WEBPACK_IMPORTED_MODULE_2__/* .initialState */ .E3);
+    }
+    enumerateObjectInstances(options) {
+        var settings = this.visualSettings;
+        var enumeratedObjects = _settings__WEBPACK_IMPORTED_MODULE_3__/* .VisualSettings.enumerateObjectInstances */ .J.enumerateObjectInstances(settings, options);
+        return enumeratedObjects;
     }
     dataExtraction(dataView) {
         const categoricalDataView = dataView.categorical;
@@ -119,7 +160,7 @@ class Visual {
         }
     }
     update(options) {
-        if (options.dataViews && options.dataViews[0]) {
+        if (options.dataViews[0]) {
             const dataView = options.dataViews[0];
             const categoricalDataView = dataView.categorical;
             const categories = categoricalDataView.categories[0];
@@ -133,6 +174,7 @@ class Visual {
                 console.log(category, measureValue, measureHighlight);
             });
             _component__WEBPACK_IMPORTED_MODULE_2__/* .RankingGrid.update */ .pt.update(this.dataExtraction(dataView).items);
+            this.visualSettings = _settings__WEBPACK_IMPORTED_MODULE_3__/* .VisualSettings.parse */ .J.parse(dataView);
         }
         else {
             this.clear();
@@ -238,6 +280,158 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
+
+/***/ }),
+
+/***/ 567:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "N": () => (/* binding */ getValue)
+/* harmony export */ });
+/* unused harmony export getFillColorByPropertyName */
+function getValue(object, propertyName, defaultValue) {
+    if (!object) {
+        return defaultValue;
+    }
+    let propertyValue = object[propertyName];
+    if (propertyValue === undefined) {
+        return defaultValue;
+    }
+    return propertyValue;
+}
+/** Gets the solid color from a fill property using only a propertyName */
+function getFillColorByPropertyName(object, propertyName, defaultColor) {
+    let value = getValue(object, propertyName);
+    if (!value || !value.solid) {
+        return defaultColor;
+    }
+    return value.solid.color;
+}
+//# sourceMappingURL=dataViewObject.js.map
+
+/***/ }),
+
+/***/ 982:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "d9": () => (/* binding */ getCommonValue)
+/* harmony export */ });
+/* unused harmony exports getValue, getObject, getFillColor */
+/* harmony import */ var _dataViewObject__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(567);
+
+/** Gets the value of the given object/property pair. */
+function getValue(objects, propertyId, defaultValue) {
+    if (!objects) {
+        return defaultValue;
+    }
+    return _dataViewObject__WEBPACK_IMPORTED_MODULE_0__/* .getValue */ .N(objects[propertyId.objectName], propertyId.propertyName, defaultValue);
+}
+/** Gets an object from objects. */
+function getObject(objects, objectName, defaultValue) {
+    if (objects && objects[objectName]) {
+        return objects[objectName];
+    }
+    return defaultValue;
+}
+/** Gets the solid color from a fill property. */
+function getFillColor(objects, propertyId, defaultColor) {
+    const value = getValue(objects, propertyId);
+    if (!value || !value.solid) {
+        return defaultColor;
+    }
+    return value.solid.color;
+}
+function getCommonValue(objects, propertyId, defaultValue) {
+    const value = getValue(objects, propertyId, defaultValue);
+    if (value && value.solid) {
+        return value.solid.color;
+    }
+    if (value === undefined
+        || value === null
+        || (typeof value === "object" && !value.solid)) {
+        return defaultValue;
+    }
+    return value;
+}
+//# sourceMappingURL=dataViewObjects.js.map
+
+/***/ }),
+
+/***/ 554:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "U": () => (/* binding */ DataViewObjectsParser)
+/* harmony export */ });
+/* harmony import */ var _dataViewObjects__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(982);
+
+class DataViewObjectsParser {
+    static getDefault() {
+        return new this();
+    }
+    static createPropertyIdentifier(objectName, propertyName) {
+        return {
+            objectName,
+            propertyName
+        };
+    }
+    static parse(dataView) {
+        let dataViewObjectParser = this.getDefault(), properties;
+        if (!dataView || !dataView.metadata || !dataView.metadata.objects) {
+            return dataViewObjectParser;
+        }
+        properties = dataViewObjectParser.getProperties();
+        for (let objectName in properties) {
+            for (let propertyName in properties[objectName]) {
+                const defaultValue = dataViewObjectParser[objectName][propertyName];
+                dataViewObjectParser[objectName][propertyName] = _dataViewObjects__WEBPACK_IMPORTED_MODULE_0__/* .getCommonValue */ .d9(dataView.metadata.objects, properties[objectName][propertyName], defaultValue);
+            }
+        }
+        return dataViewObjectParser;
+    }
+    static isPropertyEnumerable(propertyName) {
+        return !DataViewObjectsParser.InnumerablePropertyPrefix.test(propertyName);
+    }
+    static enumerateObjectInstances(dataViewObjectParser, options) {
+        let dataViewProperties = dataViewObjectParser && dataViewObjectParser[options.objectName];
+        if (!dataViewProperties) {
+            return [];
+        }
+        let instance = {
+            objectName: options.objectName,
+            selector: null,
+            properties: {}
+        };
+        for (let key in dataViewProperties) {
+            if (dataViewProperties.hasOwnProperty(key)) {
+                instance.properties[key] = dataViewProperties[key];
+            }
+        }
+        return {
+            instances: [instance]
+        };
+    }
+    getProperties() {
+        let properties = {}, objectNames = Object.keys(this);
+        objectNames.forEach((objectName) => {
+            if (DataViewObjectsParser.isPropertyEnumerable(objectName)) {
+                let propertyNames = Object.keys(this[objectName]);
+                properties[objectName] = {};
+                propertyNames.forEach((propertyName) => {
+                    if (DataViewObjectsParser.isPropertyEnumerable(objectName)) {
+                        properties[objectName][propertyName] =
+                            DataViewObjectsParser.createPropertyIdentifier(objectName, propertyName);
+                    }
+                });
+            }
+        });
+        return properties;
+    }
+}
+DataViewObjectsParser.InnumerablePropertyPrefix = /^_/;
+//# sourceMappingURL=dataViewObjectsParser.js.map
 
 /***/ }),
 

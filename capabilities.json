@@ -17,13 +17,18 @@
         }
     ],
     "objects": {
-        "general": {
-            "displayName": "Imagen",
-            "displayNameKey": "image",
+        "Colorinchis": {
+            "displayName": "Colorinchis",
             "properties": {
-                "filter": {
+                "fill": {
+                    "displayName": "Color",
+                    "description": "Color de relleno",
                     "type": {
-                        "filter": true
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
                     }
                 }
             }

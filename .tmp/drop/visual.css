@@ -19,29 +19,60 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/roboto/v29/KFOlCnqEu92Fr1MmWUlvAw.ttf) format('truetype');
 }
+* {
+  margin: 0;
+}
 body {
   font-family: 'Roboto', sans-serif;
 }
 .contenedor {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  grid-gap: 7px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  justify-content: start;
+}
+.producto {
+  display: flex;
+  align-items: flex-start;
+  max-width: 200px;
+}
+.marcas {
+  position: relative;
+  transform: translateX(-75px);
+  display: flex;
+  flex-direction: column;
+  max-width: 40px;
+  align-self: flex-start;
+  justify-content: space-between;
+  flex: 1;
+  direction: rtl;
+}
+.marcas .dr {
+  display: flex;
+  height: 20px;
+  min-width: 20px;
+  width: fit-content;
+  background-color: transparent;
+  margin-bottom: 20%;
+}
+.imagen {
+  display: flex;
+}
+.imagen .foto {
+  width: 200px;
+  z-index: -100;
 }
 .recuadro {
   position: relative;
-  height: 180px;
-  width: 120px;
+  transform: translateX(-200px);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 200px;
   background-color: transparent;
-  margin-top: 10px;
+  margin-bottom: 6%;
 }
-.foto {
-  position: absolute;
-  top: 0;
-  height: inherit;
-  object-fit: cover;
-  z-index: -100;
-}
-.rank {
+.recuadro .rank {
   display: table;
   height: 20px;
   width: 20px;
@@ -51,20 +82,20 @@ body {
   padding: 2px;
   font-weight: 100;
 }
-.rank p {
+.recuadro .rank p {
   display: table-row;
   vertical-align: middle;
   line-height: 20px;
   font-size: 0.8em;
 }
-.label {
+.recuadro .label {
   display: block;
   background-color: #ffffff;
   width: 55px;
   height: 20px;
   margin-top: 10%;
 }
-.label p {
+.recuadro .label p {
   margin: 0;
   font-size: 10px;
   text-transform: uppercase;

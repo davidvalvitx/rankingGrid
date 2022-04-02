@@ -4,17 +4,24 @@ import DataView = powerbi.DataView;
 import VisualConstructorOptions = powerbi.extensibility.visual.VisualConstructorOptions;
 import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 import IVisual = powerbi.extensibility.visual.IVisual;
+
 import DataViewCategorical = powerbi.DataViewCategorical;
 import DataViewCategoryColumn = powerbi.DataViewCategoryColumn;
 import ISelectionId = powerbi.visuals.ISelectionId;
 import DataViewValueColumnGroup = powerbi.DataViewValueColumnGroup;
 import DataViewValueColumn = powerbi.DataViewValueColumn;
 import PrimitiveValue = powerbi.PrimitiveValue;
+
 import IVisualHost = powerbi.extensibility.visual.IVisualHost;
 import ISelectionManager = powerbi.extensibility.ISelectionManager;
+import EnumerateVisualObjectInstancesOptions = powerbi.EnumerateVisualObjectInstancesOptions;
+import VisualObjectInstanceEnumeration = powerbi.VisualObjectInstanceEnumeration;
+import VisualObjectInstanceEnumerationObject = powerbi.VisualObjectInstanceEnumerationObject;
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { RankingGrid, initialState, State } from "./component";
+import { VisualSettings } from "./settings";
+
 
 import "./../style/visual.less";
 
@@ -25,6 +32,7 @@ export interface ISelectionIdBuilder {
 }
 
 export class Visual implements IVisual {
+    private visualSettings: VisualSettings;
     private target: HTMLElement;
     private reactRoot: React.ComponentElement<any, any>;
     private host: IVisualHost;
@@ -37,6 +45,7 @@ export class Visual implements IVisual {
         this.host = options.host;
         this.selectionManager = this.host.createSelectionManager();
         this.selectionIdBuilder = options.host.createSelectionIdBuilder();
+        this.visualSettings = <VisualSettings>VisualSettings.getDefault();
 
         options.element.style.overflow = 'auto';
 
@@ -46,6 +55,13 @@ export class Visual implements IVisual {
 
     private clear() {
         RankingGrid.update(initialState);
+    }
+
+    public enumerateObjectInstances(options: EnumerateVisualObjectInstancesOptions): VisualObjectInstanceEnumeration {
+
+        var settings: VisualSettings = this.visualSettings;
+        var enumeratedObjects: VisualObjectInstanceEnumerationObject = <VisualObjectInstanceEnumerationObject>VisualSettings.enumerateObjectInstances(settings, options);
+        return enumeratedObjects;
     }
 
 
@@ -101,7 +117,7 @@ export class Visual implements IVisual {
 
 
     public update(options: VisualUpdateOptions) {
-        if (options.dataViews && options.dataViews[0]) {
+        if (options.dataViews[0]) {
             const dataView: DataView = options.dataViews[0];
             const categoricalDataView: DataViewCategorical = dataView.categorical;
             const categories: DataViewCategoryColumn = categoricalDataView.categories[0];
@@ -117,6 +133,7 @@ export class Visual implements IVisual {
                 console.log(category, measureValue, measureHighlight);
             });
             RankingGrid.update(this.dataExtraction(dataView).items);
+            this.visualSettings = VisualSettings.parse<VisualSettings>(dataView);
 
         } else {
             this.clear();

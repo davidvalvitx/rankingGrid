@@ -46,14 +46,22 @@ export class RankingGrid extends React.Component<{}, State>{
                     {this.state.Imagen.map(
                         (x, i) => {
                             return (
-                                <div className='recuadro' key={i} >
-                                    <div className='rank'>
-                                        <p>{this.state.Ranking[i]}</p>
+                                <div className="producto">
+                                    <div className="imagen">
+                                        <img key={i} className='foto' src={x} alt="" />
                                     </div>
-                                    <div className='label'>
-                                        <p>{this.state.KPI[i].toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}</p>
+                                    <div className='recuadro' key={i} >
+                                        <div className='rank'>
+                                            <p>{this.state.Ranking[i]}</p>
+                                        </div>
+                                        <div className='label'>
+                                            <p>{this.state.KPI[i].toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}</p>
+                                        </div>
                                     </div>
-                                    <img key={i} className='foto' src={x} alt="" />
+                                    <div className="marcas">
+                                        <div className="dr"></div>
+                                        <div className="dr"></div>
+                                    </div>
                                 </div>
                             )
                         }

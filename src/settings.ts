@@ -3,20 +3,13 @@
 import { dataViewObjectsParser } from "powerbi-visuals-utils-dataviewutils";
 import DataViewObjectsParser = dataViewObjectsParser.DataViewObjectsParser;
 
-export class VisualSettings extends DataViewObjectsParser {
-  public dataPoint: dataPointSettings = new dataPointSettings();
-}
-
-export class dataPointSettings {
+export class colorinchisSettings {
   // Default color
-  public defaultColor: string = "";
-  // Show all
+  public color: string = "#5555FF";
   public showAllDataPoints: boolean = true;
-  // Fill
-  public fill: string = "";
-  // Color saturation
-  public fillRule: string = "";
-  // Text Size
-  public fontSize: number = 12;
 }
 
+
+export class VisualSettings extends DataViewObjectsParser {
+  public colors: colorinchisSettings = new colorinchisSettings();
+}
