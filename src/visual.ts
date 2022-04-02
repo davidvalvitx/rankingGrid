@@ -127,22 +127,23 @@ export class Visual implements IVisual {
 
             this.settings = VisualSettings.parse(dataView) as VisualSettings;
 
-            const object = this.settings.indicador;
-            const object2 = this.settings.ranking;
+            const indicador = this.settings.indicador;
+            const ranking = this.settings.ranking;
 
             const data = this.dataExtraction(dataView).items
-            const tamanoIndicador = object && object.textSize ? object.textSize : undefined
+            const tamanoIndicador = indicador && indicador.textSize ? indicador.textSize : undefined
             data.textSize = tamanoIndicador
-            const colorTexto = object && object.colorText ? object.colorText : undefined
+            const colorTexto = indicador && indicador.colorText ? indicador.colorText : undefined
             data.colorText = colorTexto
-            const tamanoRank = object2 && object2.tamanoNumero ? object2.tamanoNumero : undefined
-            data.tamanoRank = tamanoRank
 
-            const size = object2 && object2.tamanoRank ? object2.tamanoRank : undefined
+
+            const tamanoRank = ranking && ranking.tamanoNumero ? ranking.tamanoNumero : undefined
+            data.tamanoRank = tamanoRank
+            const size = ranking && ranking.tamanoRank ? ranking.tamanoRank : undefined
             data.size = size
-            const color = object2 && object2.colorRank ? object2.colorRank : undefined
+            const color = ranking && ranking.colorRank ? ranking.colorRank : undefined
             data.color = color
-            const tamanoTextoRank = object2 && object2.textSize ? object2.textSize : undefined
+            const tamanoTextoRank = ranking && ranking.textSize ? ranking.textSize : undefined
             data.textSizeRank = tamanoTextoRank
             // Not implemented yet...
             // const scroll = object2 && object2.scrollBar ? object2.scrollBar : undefined

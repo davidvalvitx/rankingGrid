@@ -123,7 +123,7 @@ export class RankingGrid extends React.Component<{}, State>{
             min-height: 20px;
         `
 
-        const KPIText = styled.div`
+        const KPIText = styled.p`
             margin: 0;
             text-transform: uppercase;
             vertical-align: middle;
@@ -132,8 +132,8 @@ export class RankingGrid extends React.Component<{}, State>{
             margin-left: 0.6em;
             margin-right: 0.5em;
             padding: 0.2em;
-            font-size: ${textSize};
             color: ${colorText};
+            font-size: ${textSize}px;
         `
 
         const Marcas = styled.div`
