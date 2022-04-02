@@ -78,6 +78,7 @@ export class Visual implements IVisual {
             items.KPI.push(kpi)
             items.Ranking.push(rank)
         }
+        // console.log(items);
         return {
             items
 
@@ -121,7 +122,7 @@ export class Visual implements IVisual {
             categoryValues.forEach((category: PrimitiveValue, index: number) => {
                 const measureValue = measureValues[index];
                 const measureHighlight = measureHighlights && measureHighlights[index] ? measureHighlights[index] : null;
-                // console.log(category, measureValue, measureHighlight);
+                // console.log(category, measureValue);
             });
 
             this.settings = VisualSettings.parse(dataView) as VisualSettings;
@@ -130,7 +131,6 @@ export class Visual implements IVisual {
             const object2 = this.settings.ranking;
 
             const data = this.dataExtraction(dataView).items
-
             const tamanoIndicador = object && object.textSize ? object.textSize : undefined
             data.textSize = tamanoIndicador
             const colorTexto = object && object.colorText ? object.colorText : undefined
@@ -144,6 +144,10 @@ export class Visual implements IVisual {
             data.color = color
             const tamanoTextoRank = object2 && object2.textSize ? object2.textSize : undefined
             data.textSizeRank = tamanoTextoRank
+            // Not implemented yet...
+            // const scroll = object2 && object2.scrollBar ? object2.scrollBar : undefined
+            // data.scrollBar = scroll
+
 
             RankingGrid.update(data);
         } else {

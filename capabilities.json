@@ -49,6 +49,16 @@
                             "fontSize": true
                         }
                     }
+                },
+                "scrollBar": {
+                    "displayName": "Scroll Color",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
                 }
             }
         },

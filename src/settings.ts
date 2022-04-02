@@ -2,7 +2,7 @@
 
 import { dataViewObjectsParser } from "powerbi-visuals-utils-dataviewutils";
 import DataViewObjectsParser = dataViewObjectsParser.DataViewObjectsParser;
-import { TEXT_SIZE, RANK_SIZE, TEXT_COLOR, RANK_COLOR, SIZE, RANK_FONT } from "./constants";
+import { TEXT_SIZE, RANK_SIZE, TEXT_COLOR, RANK_COLOR, SIZE, RANK_FONT, SCROLL_BAR } from "./constants";
 
 export class indicadorSettings {
   public textSize: number = TEXT_SIZE;
@@ -13,7 +13,8 @@ export class rankingSettings {
   public tamanoRank: number = SIZE;
   public colorRank: string = RANK_COLOR;
   public tamanoNumero: number = RANK_SIZE;
-  public textSize: number = TEXT_SIZE;
+  public textSize: number = RANK_FONT;
+  // public scrollBar: string = SCROLL_BAR;
 }
 
 
