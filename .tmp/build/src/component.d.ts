@@ -4,6 +4,12 @@ export interface State {
     KPI: number[];
     Ranking: number[];
     ISelectionId: number[];
+    size?: number;
+    color?: string;
+    textSize?: number;
+    colorText?: string;
+    tamanoRank?: number;
+    textSizeRank?: number;
 }
 export declare const initialState: State;
 export declare class RankingGrid extends React.Component<{}, State> {

@@ -17,12 +17,54 @@
         }
     ],
     "objects": {
-        "Colorinchis": {
-            "displayName": "Colorinchis",
+        "ranking": {
+            "displayName": "Ranking",
             "properties": {
-                "fill": {
-                    "displayName": "Color",
-                    "description": "Color de relleno",
+                "tamanoRank": {
+                    "displayName": "Tamaño Tarjeta",
+                    "type": {
+                        "numeric": true
+                    }
+                },
+                "colorRank": {
+                    "displayName": "Color Ranking",
+                    "type": {
+                        "fill": {
+                            "solid": {
+                                "color": true
+                            }
+                        }
+                    }
+                },
+                "tamanoNumero": {
+                    "displayName": "Tamaño Ranking",
+                    "type": {
+                        "numeric": true
+                    }
+                },
+                "textSize": {
+                    "displayName": "Tamaño Fuente Ranking",
+                    "type": {
+                        "formatting": {
+                            "fontSize": true
+                        }
+                    }
+                }
+            }
+        },
+        "indicador": {
+            "displayName": "Indicador",
+            "properties": {
+                "textSize": {
+                    "displayName": "Tamaño",
+                    "type": {
+                        "formatting": {
+                            "fontSize": true
+                        }
+                    }
+                },
+                "colorText": {
+                    "displayName": "Color Texto",
                     "type": {
                         "fill": {
                             "solid": {

@@ -5,15 +5,16 @@ import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 import IVisual = powerbi.extensibility.visual.IVisual;
 import DataViewCategoryColumn = powerbi.DataViewCategoryColumn;
 import ISelectionId = powerbi.visuals.ISelectionId;
+import VisualObjectInstance = powerbi.VisualObjectInstance;
 import EnumerateVisualObjectInstancesOptions = powerbi.EnumerateVisualObjectInstancesOptions;
-import VisualObjectInstanceEnumeration = powerbi.VisualObjectInstanceEnumeration;
+import VisualObjectInstanceEnumerationObject = powerbi.VisualObjectInstanceEnumerationObject;
 import "./../style/visual.less";
 export interface ISelectionIdBuilder {
     withCategory(categoryColumn: DataViewCategoryColumn, index: number): this;
     createSelectionId(): ISelectionId;
 }
 export declare class Visual implements IVisual {
-    private visualSettings;
+    private settings;
     private target;
     private reactRoot;
     private host;
@@ -21,8 +22,8 @@ export declare class Visual implements IVisual {
     private selectionIdBuilder;
     constructor(options: VisualConstructorOptions);
     private clear;
-    enumerateObjectInstances(options: EnumerateVisualObjectInstancesOptions): VisualObjectInstanceEnumeration;
     private dataExtraction;
     selectData(options: VisualUpdateOptions, dataView: DataView): void;
     update(options: VisualUpdateOptions): void;
+    enumerateObjectInstances(options: EnumerateVisualObjectInstancesOptions): VisualObjectInstance[] | VisualObjectInstanceEnumerationObject;
 }

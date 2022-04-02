@@ -12,11 +12,12 @@ var rankingGrid5026DF9488DA4528B23667923CEF3213_DEBUG;
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(294);
 
+;
 const initialState = {
     Imagen: [""],
     KPI: [0],
     Ranking: [],
-    ISelectionId: []
+    ISelectionId: [],
 };
 class RankingGrid extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     constructor(props) {
@@ -36,20 +37,44 @@ class RankingGrid extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
         RankingGrid.updateCallback = null;
     }
     render() {
-        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "App" },
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'contenedor' }, this.state.Imagen.map((x, i) => {
-                return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "producto" },
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "imagen" },
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { key: i, className: 'foto', src: x, alt: "" })),
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'recuadro', key: i },
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'rank' },
-                            react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.state.Ranking[i])),
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'label' },
-                            react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, this.state.KPI[i].toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })))),
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "marcas" },
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "dr" }),
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "dr" }))));
-            }))));
+        const { size, color, textSize, colorText, tamanoRank, textSizeRank } = this.state;
+        const sizeOk = size + "px";
+        const grid = {
+            display: "grid",
+            gap: "10px",
+            justifyContent: "start",
+            gridTemplateColumns: `repeat(auto-fill, minmax(${sizeOk}, 1fr))`
+        };
+        const rank = {
+            "maxWidth": sizeOk,
+            "backgroundColor": color,
+            "minWidth": tamanoRank,
+            "height": tamanoRank,
+        };
+        const styleRecuadro = {
+            height: sizeOk,
+            transform: `translateX(-${sizeOk})`
+        };
+        const kpi = {
+            "fontSize": textSize,
+            "color": colorText
+        };
+        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "App" },
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, colorText),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'contenedor', style: grid }, this.state.Imagen.map((x, i) => {
+                    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "producto", style: { "maxWidth": sizeOk } },
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "imagen" },
+                            react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { key: i, className: 'foto', src: x, alt: "", style: { "width": sizeOk } })),
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'recuadro', key: i, style: styleRecuadro },
+                            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'rank', style: rank },
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", { style: { "fontSize": textSizeRank } }, this.state.Ranking[i])),
+                            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: 'label' },
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", { style: kpi }, this.state.KPI[i].toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })))),
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "marcas" },
+                            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "dr" }),
+                            react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "dr" }))));
+                })))));
     }
 }
 RankingGrid.updateCallback = null;
@@ -58,28 +83,59 @@ RankingGrid.updateCallback = null;
 
 /***/ }),
 
+/***/ 712:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "JB": () => (/* binding */ TEXT_SIZE),
+/* harmony export */   "NO": () => (/* binding */ SIZE),
+/* harmony export */   "eA": () => (/* binding */ RANK_COLOR),
+/* harmony export */   "fk": () => (/* binding */ RANK_SIZE),
+/* harmony export */   "ou": () => (/* binding */ TEXT_COLOR)
+/* harmony export */ });
+/* unused harmony export RANK_FONT */
+const SIZE = 200;
+const RANK_SIZE = 20;
+const RANK_FONT = 20;
+const RANK_COLOR = "#000000";
+const TEXT_SIZE = 11;
+const TEXT_COLOR = "#000000";
+
+
+/***/ }),
+
 /***/ 746:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "J": () => (/* binding */ VisualSettings)
+/* harmony export */   "Jx": () => (/* binding */ VisualSettings)
 /* harmony export */ });
-/* unused harmony export colorinchisSettings */
+/* unused harmony exports indicadorSettings, rankingSettings */
 /* harmony import */ var powerbi_visuals_utils_dataviewutils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(554);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(712);
 
 
 var DataViewObjectsParser = powerbi_visuals_utils_dataviewutils__WEBPACK_IMPORTED_MODULE_0__/* .DataViewObjectsParser */ .U;
-class colorinchisSettings {
+
+class indicadorSettings {
     constructor() {
-        // Default color
-        this.color = "#5555FF";
-        this.showAllDataPoints = true;
+        this.textSize = _constants__WEBPACK_IMPORTED_MODULE_1__/* .TEXT_SIZE */ .JB;
+        this.colorText = _constants__WEBPACK_IMPORTED_MODULE_1__/* .TEXT_COLOR */ .ou;
+    }
+}
+class rankingSettings {
+    constructor() {
+        this.tamanoRank = _constants__WEBPACK_IMPORTED_MODULE_1__/* .SIZE */ .NO;
+        this.colorRank = _constants__WEBPACK_IMPORTED_MODULE_1__/* .RANK_COLOR */ .eA;
+        this.tamanoNumero = _constants__WEBPACK_IMPORTED_MODULE_1__/* .RANK_SIZE */ .fk;
+        this.textSize = _constants__WEBPACK_IMPORTED_MODULE_1__/* .TEXT_SIZE */ .JB;
     }
 }
 class VisualSettings extends DataViewObjectsParser {
     constructor() {
         super(...arguments);
-        this.colors = new colorinchisSettings();
+        this.ranking = new rankingSettings();
+        this.indicador = new indicadorSettings();
     }
 }
 
@@ -92,10 +148,10 @@ class VisualSettings extends DataViewObjectsParser {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "u": () => (/* binding */ Visual)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(294);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(935);
-/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(423);
-/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(746);
+/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(746);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(294);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(935);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(423);
 
 
 
@@ -103,22 +159,16 @@ class VisualSettings extends DataViewObjectsParser {
 
 class Visual {
     constructor(options) {
-        this.reactRoot = react__WEBPACK_IMPORTED_MODULE_0__.createElement(_component__WEBPACK_IMPORTED_MODULE_2__/* .RankingGrid */ .pt, {});
+        this.reactRoot = react__WEBPACK_IMPORTED_MODULE_1__.createElement(_component__WEBPACK_IMPORTED_MODULE_3__/* .RankingGrid */ .pt, {});
         this.target = options.element;
         this.host = options.host;
         this.selectionManager = this.host.createSelectionManager();
         this.selectionIdBuilder = options.host.createSelectionIdBuilder();
-        this.visualSettings = _settings__WEBPACK_IMPORTED_MODULE_3__/* .VisualSettings.getDefault */ .J.getDefault();
         options.element.style.overflow = 'auto';
-        react_dom__WEBPACK_IMPORTED_MODULE_1__.render(this.reactRoot, this.target);
+        react_dom__WEBPACK_IMPORTED_MODULE_2__.render(this.reactRoot, this.target);
     }
     clear() {
-        _component__WEBPACK_IMPORTED_MODULE_2__/* .RankingGrid.update */ .pt.update(_component__WEBPACK_IMPORTED_MODULE_2__/* .initialState */ .E3);
-    }
-    enumerateObjectInstances(options) {
-        var settings = this.visualSettings;
-        var enumeratedObjects = _settings__WEBPACK_IMPORTED_MODULE_3__/* .VisualSettings.enumerateObjectInstances */ .J.enumerateObjectInstances(settings, options);
-        return enumeratedObjects;
+        _component__WEBPACK_IMPORTED_MODULE_3__/* .RankingGrid.update */ .pt.update(_component__WEBPACK_IMPORTED_MODULE_3__/* .initialState */ .E3);
     }
     dataExtraction(dataView) {
         const categoricalDataView = dataView.categorical;
@@ -160,7 +210,7 @@ class Visual {
         }
     }
     update(options) {
-        if (options.dataViews[0]) {
+        if (options.dataViews && options.dataViews[0]) {
             const dataView = options.dataViews[0];
             const categoricalDataView = dataView.categorical;
             const categories = categoricalDataView.categories[0];
@@ -171,14 +221,32 @@ class Visual {
             categoryValues.forEach((category, index) => {
                 const measureValue = measureValues[index];
                 const measureHighlight = measureHighlights && measureHighlights[index] ? measureHighlights[index] : null;
-                console.log(category, measureValue, measureHighlight);
+                // console.log(category, measureValue, measureHighlight);
             });
-            _component__WEBPACK_IMPORTED_MODULE_2__/* .RankingGrid.update */ .pt.update(this.dataExtraction(dataView).items);
-            this.visualSettings = _settings__WEBPACK_IMPORTED_MODULE_3__/* .VisualSettings.parse */ .J.parse(dataView);
+            this.settings = _settings__WEBPACK_IMPORTED_MODULE_0__/* .VisualSettings.parse */ .Jx.parse(dataView);
+            const object = this.settings.indicador;
+            const object2 = this.settings.ranking;
+            const data = this.dataExtraction(dataView).items;
+            const tamanoIndicador = object && object.textSize ? object.textSize : undefined;
+            data.textSize = tamanoIndicador;
+            const colorTexto = object && object.colorText ? object.colorText : undefined;
+            data.colorText = colorTexto;
+            const tamanoRank = object2 && object2.tamanoNumero ? object2.tamanoNumero : undefined;
+            data.tamanoRank = tamanoRank;
+            const size = object2 && object2.tamanoRank ? object2.tamanoRank : undefined;
+            data.size = size;
+            const color = object2 && object2.colorRank ? object2.colorRank : undefined;
+            data.color = color;
+            const tamanoTextoRank = object2 && object2.textSize ? object2.textSize : undefined;
+            data.textSizeRank = tamanoTextoRank;
+            _component__WEBPACK_IMPORTED_MODULE_3__/* .RankingGrid.update */ .pt.update(data);
         }
         else {
             this.clear();
         }
+    }
+    enumerateObjectInstances(options) {
+        return _settings__WEBPACK_IMPORTED_MODULE_0__/* .VisualSettings.enumerateObjectInstances */ .Jx.enumerateObjectInstances(this.settings || _settings__WEBPACK_IMPORTED_MODULE_0__/* .VisualSettings.getDefault */ .Jx.getDefault(), options);
     }
 }
 // Pending cross-filtering and highlighting
