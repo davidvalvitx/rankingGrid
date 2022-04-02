@@ -108,7 +108,7 @@
                     },
                     "dataReductionAlgorithm": {
                         "window": {
-                            "count": 500
+                            "count": 999
                         }
                     }
                 },

@@ -133,7 +133,6 @@ export class RankingGrid extends React.Component<{}, State>{
             margin-right: 0.5em;
             padding: 0.2em;
             color: ${colorText};
-            font-size: ${textSize}px;
         `
 
         const Marcas = styled.div`
@@ -181,7 +180,7 @@ export class RankingGrid extends React.Component<{}, State>{
                                                         </p>
                                                     </Rank>
                                                     <KPIBox>
-                                                        <KPIText>
+                                                        <KPIText style={{ "fontSize": textSize }}>
                                                             {this.state.KPI[i].toLocaleString(undefined,
                                                                 { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
                                                         </KPIText>
