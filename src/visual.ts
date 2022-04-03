@@ -46,23 +46,25 @@ export class Visual implements IVisual {
         const categoryColumn = categoricalDataView.categories[0];
         const categoryValues = categoryColumn.values;
 
-        let KPI = dataView.categorical.values[0];
-        let KPIValues = KPI.values;
-        let Ranking = dataView.categorical.values[1];
-        let RankingValues = Ranking.values;
+        let KPIValues = dataView.categorical.values[0].values;
+        let RankingValues = dataView.categorical.values[1].values;
+        let secRank = dataView.categorical.values[2].values;
 
-        const items: State = { Imagen: [], KPI: [], Ranking: [] }
+        const items: State = { Imagen: [], KPI: [], Ranking: [], secRank: [] }
+        // const items: State = { Imagen: [], KPI: [], Ranking: [] }
 
         for (let i = 0; i < categoryValues.length; i++) {
 
             let image: string = categoryValues[i].valueOf() as string;
             let kpi: number = KPIValues[i].valueOf() as number;
             let rank: number = RankingValues[i].valueOf() as number;
+            let rankSec: number = secRank[i].valueOf() as number;
 
 
             items.Imagen.push(image)
             items.KPI.push(kpi)
             items.Ranking.push(rank)
+            items.secRank.push(rankSec)
         }
         return {
             items
@@ -109,16 +111,16 @@ export class Visual implements IVisual {
                 data.textSizeRank = ranking && ranking.textSize ? ranking.textSize : undefined
 
                 RankingGrid.update(data);
-                console.log(`Cargado ${categoryValues.length}`);
+                // console.log(`Cargado ${categoryValues.length}`);
 
-                console.log(`Paro?: ${stopFetch}`);
+                // console.log(`Paro?: ${stopFetch}`);
 
                 if (stopFetch) {
-                    console.log(`Cargado ${categoryValues.length}`);
+                    // console.log(`Cargado ${categoryValues.length}`);
 
 
                 } else {
-                    console.log('Listo');
+                    // console.log('Listo');
                 }
             }
             const data = this.dataExtraction(dataView).items;
@@ -131,6 +133,7 @@ export class Visual implements IVisual {
             data.color = ranking && ranking.colorRank ? ranking.colorRank : undefined
             data.textSizeRank = ranking && ranking.textSize ? ranking.textSize : undefined
 
+            console.log(data);
             RankingGrid.update(data);
 
         } else {

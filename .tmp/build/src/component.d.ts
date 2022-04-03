@@ -3,6 +3,7 @@ export interface State {
     Imagen: string[];
     KPI: number[];
     Ranking: number[];
+    secRank: number[];
     size?: number;
     color?: string;
     textSize?: number;
