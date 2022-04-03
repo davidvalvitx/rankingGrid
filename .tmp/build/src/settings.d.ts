@@ -6,6 +6,9 @@ export declare class rankingSettings {
     tamanoNumero: number;
     textSize: number;
 }
+export declare class scrollBarSettings {
+    scrollBar: string;
+}
 export declare class indicadorSettings {
     textSize: number;
     colorText: string;

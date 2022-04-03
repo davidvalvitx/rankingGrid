@@ -1,6 +1,6 @@
 import * as PropTypes from 'prop-types';
 export declare const Scrollbar: {
-    (props: any): JSX.Element;
+    (prop: any): JSX.Element;
     propTypes: {
         children: PropTypes.Validator<PropTypes.ReactNodeLike>;
     };

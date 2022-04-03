@@ -6,7 +6,6 @@
             "react",
             "react-dom"
         ],
-        "module": "commonjs",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "target": "es6",

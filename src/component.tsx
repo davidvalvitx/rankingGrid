@@ -2,26 +2,23 @@ import * as React from "react";
 import Scrollbar from "./scrollbar/scroll";
 import styled from "styled-components";
 
-
 export interface State {
     Imagen: string[],
     KPI: number[],
     Ranking: number[],
-    ISelectionId: number[],
     size?: number,
     color?: string
     textSize?: number,
     colorText?: string,
     tamanoRank?: number
     textSizeRank?: number,
-    scrollBar?: string
+    scrollColor?: string
 }
 
 export const initialState: State = {
     Imagen: [""],
     KPI: [0],
-    Ranking: [],
-    ISelectionId: [],
+    Ranking: [0]
 }
 
 export class RankingGrid extends React.Component<{}, State>{
@@ -49,7 +46,7 @@ export class RankingGrid extends React.Component<{}, State>{
     }
 
     render() {
-        const { size, color, textSize, colorText, tamanoRank, textSizeRank, scrollBar } = this.state;
+        const { size, color, textSize, colorText, tamanoRank, textSizeRank, scrollColor } = this.state;
         const sizeOk = size + "px";
         const size2 = 95 + "px";
         const alto = (size * 1.5) + "px";
@@ -135,34 +132,31 @@ export class RankingGrid extends React.Component<{}, State>{
             color: ${colorText};
         `
 
-        const Marcas = styled.div`
-            position: relative;
-            right: 95px;
-            // transform: translateX(-${size2});
-            display: flex;
-            flex-direction: column;
-            max-width: 40px;
-            align-self: flex-start;
-            justify-content: space-between;
-            flex: 1;
-            direction: rtl;
-            z-index: 10;  
-        `
-        const Marca = styled.div`
-            display: flex;
-            height: 20px;
-            min-width: 20px;
-            width: fit-content;
-            background-color: transparent;
-            margin-bottom: 20%;
-        `
-
-
+        // const Marcas = styled.div`
+        //     position: relative;
+        //     right: 95px;
+        //     // transform: translateX(-${size2});
+        //     display: flex;
+        //     flex-direction: column;
+        //     max-width: 40px;
+        //     align-self: flex-start;
+        //     justify-content: space-between;
+        //     flex: 1;
+        //     direction: rtl;
+        //     z-index: 10;  
+        // `
+        // const Marca = styled.div`
+        //     display: flex;
+        //     height: 20px;
+        //     min-width: 20px;
+        //     width: fit-content;
+        //     background-color: transparent;
+        //     margin-bottom: 20%;
+        // `
 
         return (
             <>
                 <div className="App">
-                    {/* <h1 style={{ "color": scrollBar }}>{scrollBar}</h1> */}
                     <Scrollbar>
                         <Grid>
                             {this.state.Imagen.map(
@@ -186,10 +180,10 @@ export class RankingGrid extends React.Component<{}, State>{
                                                         </KPIText>
                                                     </KPIBox>
                                                 </Datos>
-                                                <Marcas>
+                                                {/* <Marcas>
                                                     <Marca></Marca>
                                                     <Marca></Marca>
-                                                </Marcas>
+                                                </Marcas> */}
                                             </Info>
                                         </Producto>
                                     )

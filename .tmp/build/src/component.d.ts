@@ -3,14 +3,13 @@ export interface State {
     Imagen: string[];
     KPI: number[];
     Ranking: number[];
-    ISelectionId: number[];
     size?: number;
     color?: string;
     textSize?: number;
     colorText?: string;
     tamanoRank?: number;
     textSizeRank?: number;
-    scrollBar?: string;
+    scrollColor?: string;
 }
 export declare const initialState: State;
 export declare class RankingGrid extends React.Component<{}, State> {

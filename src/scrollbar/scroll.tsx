@@ -1,11 +1,13 @@
 import * as React from "react";
+import { useState } from "react";
 import * as PropTypes from 'prop-types';
 import { ScrollbarWrapper, Content } from "./wrapper"
 
-export const Scrollbar = props => {
-    const { children } = props
+
+export const Scrollbar = (prop) => {
+    const { children } = prop
     return (
-        <ScrollbarWrapper>
+        <ScrollbarWrapper color="black">
             <Content>
                 {children}
             </Content>

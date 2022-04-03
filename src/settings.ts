@@ -10,7 +10,10 @@ export class rankingSettings {
   public colorRank: string = RANK_COLOR;
   public tamanoNumero: number = RANK_SIZE;
   public textSize: number = RANK_FONT;
-  // public scrollBar: string = SCROLL_BAR;
+}
+
+export class scrollBarSettings {
+  public scrollBar: string = SCROLL_BAR;
 }
 
 export class indicadorSettings {
@@ -21,4 +24,5 @@ export class indicadorSettings {
 export class VisualSettings extends DataViewObjectsParser {
   public ranking: rankingSettings = new rankingSettings();
   public indicador: indicadorSettings = new indicadorSettings();
+  // public scrollbar: scrollBarSettings = new scrollBarSettings();
 }
