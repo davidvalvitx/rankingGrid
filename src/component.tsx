@@ -1,6 +1,6 @@
 import * as React from "react";
 import Scrollbar from "./scrollbar/scroll";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export interface State {
     Imagen: string[],
@@ -13,7 +13,8 @@ export interface State {
     colorText?: string,
     tamanoRank?: number
     textSizeRank?: number,
-    scrollColor?: string
+    scrollColor?: string,
+    turnCards?: boolean
 }
 
 export const initialState: State = {
@@ -48,7 +49,7 @@ export class RankingGrid extends React.Component<{}, State>{
     }
 
     render() {
-        const { size, color, textSize, colorText, tamanoRank, textSizeRank, scrollColor } = this.state;
+        const { size, color, textSize, colorText, tamanoRank, textSizeRank, scrollColor, turnCards } = this.state;
         const sizeOk = size + "px";
         const size2 = 95 + "px";
         const alto = (size * 1.5) + "px";
@@ -83,92 +84,93 @@ export class RankingGrid extends React.Component<{}, State>{
             transition: transform 0.6s;
             transform-style: preserve-3d;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            ${props => turnCards ? css`
             ${Producto}: hover & {
                 transform: rotateY(180deg);
-            };
-        `
+            }`: void (0)
+            };`
 
         const ProductoFrente = styled.div`
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            background-color: #bbb;
+        position: absolute;
+        width: 100 %;
+        height: 100 %;
+        backface-visibility: hidden;
+        background-color: #bbb;
         `
 
         const ProductoAtras = styled.div`
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            transform: rotateY(180deg);
-            background-color: white;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        transform: rotateY(180deg);
+        background-color: white;
         `
 
         const Info = styled.div`
-            display: flex;
+        display: flex;
         `
 
         const Datos = styled.div`
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: flex;
-            align-items: flex-start;
-            flex-direction: row;
-            background-color: transparent;
-            margin-bottom: 6%;
-            height: ${sizeOk};
-            // transform: translateX(-${sizeOk});
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: row;
+        background-color: transparent;
+        margin-bottom: 6%;
+        height: ${sizeOk};
         `
+
         const Rank = styled.div`
-            position: inline-block;
-            align-self: flex-start;
-            align-content: center;
-            justify-content: center;
-            min-height: 15px;
-            min-width: 15px;
-            color: white;
-            padding: 0.5em ;
-            font-weight: 100;
-            max-width: ${sizeOk};
-            min-width: ${tamanoRank};
-            height: ${tamanoRank};
+        position: inline-block;
+        align-self: flex-start;
+        align-content: center;
+        justify-content: center;
+        min-height: 15px;
+        min-width: 15px;
+        color: white;
+        padding: 0.5em;
+        font-weight: 100;
+        max-width: ${sizeOk};
+        min-width: ${tamanoRank};
+        height: ${tamanoRank};
         `
 
         const RankGrey = styled(Rank)`
-            margin-right: auto;
-            background-color: grey;
+        margin-right: auto;
+        background-color: grey;
         `
 
         const Image = styled.img`
-            width: ${sizeOk}; 
-            min-height: 100%;
-            object-fit: cover;
+        width: ${sizeOk};
+        min-height: 100%;
+        object-fit: cover;
         `
 
         const KPIBox = styled.div`
-            position: absolute;
-            top: 0;
-            display: flex;
-            background-color: rgb(255, 255, 255);
-            width: fit-content;
-            height: fit-content;
-            min-width: 55px;
-            min-height: 20px;
-            margin-top: 100%;
+        position: absolute;
+        top: 0;
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        width: fit-content;
+        height: fit-content;
+        min-width: 55px;
+        min-height: 20px;
+        margin-top: 100%;
         `
 
         const KPIText = styled.p`
-            margin: 0;
-            text-transform: uppercase;
-            vertical-align: middle;
-            line-height: 20px;
-            font-weight: 700;
-            margin-left: 0.6em;
-            margin-right: 0.5em;
-            padding: 0.2em;
-            color: ${colorText};
+        margin: 0;
+        text-transform: uppercase;
+        vertical-align: middle;
+        line-height: 20px;
+        font-weight: 700;
+        margin-left: 0.6em;
+        margin-right: 0.5em;
+        padding: 0.2em;
+        color: ${colorText};
         `
 
         // const Marcas = styled.div`

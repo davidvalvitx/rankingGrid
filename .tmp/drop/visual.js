@@ -40,7 +40,7 @@ class RankingGrid extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
         RankingGrid.updateCallback = null;
     }
     render() {
-        const { size, color, textSize, colorText, tamanoRank, textSizeRank, scrollColor } = this.state;
+        const { size, color, textSize, colorText, tamanoRank, textSizeRank, scrollColor, turnCards } = this.state;
         const sizeOk = size + "px";
         const size2 = 95 + "px";
         const alto = (size * 1.5) + "px";
@@ -72,84 +72,83 @@ class RankingGrid extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
             transition: transform 0.6s;
             transform-style: preserve-3d;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            ${props => turnCards ? styled_components__WEBPACK_IMPORTED_MODULE_2__/* .css */ .iv `
             ${Producto}: hover & {
                 transform: rotateY(180deg);
-            };
-        `;
+            }` : void (0)};`;
         const ProductoFrente = styled_components__WEBPACK_IMPORTED_MODULE_2__/* ["default"].div */ .ZP.div `
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            background-color: #bbb;
+        position: absolute;
+        width: 100 %;
+        height: 100 %;
+        backface-visibility: hidden;
+        background-color: #bbb;
         `;
         const ProductoAtras = styled_components__WEBPACK_IMPORTED_MODULE_2__/* ["default"].div */ .ZP.div `
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            transform: rotateY(180deg);
-            background-color: white;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        transform: rotateY(180deg);
+        background-color: white;
         `;
         const Info = styled_components__WEBPACK_IMPORTED_MODULE_2__/* ["default"].div */ .ZP.div `
-            display: flex;
+        display: flex;
         `;
         const Datos = styled_components__WEBPACK_IMPORTED_MODULE_2__/* ["default"].div */ .ZP.div `
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: flex;
-            align-items: flex-start;
-            flex-direction: row;
-            background-color: transparent;
-            margin-bottom: 6%;
-            height: ${sizeOk};
-            // transform: translateX(-${sizeOk});
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: row;
+        background-color: transparent;
+        margin-bottom: 6%;
+        height: ${sizeOk};
         `;
         const Rank = styled_components__WEBPACK_IMPORTED_MODULE_2__/* ["default"].div */ .ZP.div `
-            position: inline-block;
-            align-self: flex-start;
-            align-content: center;
-            justify-content: center;
-            min-height: 15px;
-            min-width: 15px;
-            color: white;
-            padding: 0.5em ;
-            font-weight: 100;
-            max-width: ${sizeOk};
-            min-width: ${tamanoRank};
-            height: ${tamanoRank};
+        position: inline-block;
+        align-self: flex-start;
+        align-content: center;
+        justify-content: center;
+        min-height: 15px;
+        min-width: 15px;
+        color: white;
+        padding: 0.5em;
+        font-weight: 100;
+        max-width: ${sizeOk};
+        min-width: ${tamanoRank};
+        height: ${tamanoRank};
         `;
         const RankGrey = (0,styled_components__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(Rank) `
-            margin-right: auto;
-            background-color: grey;
+        margin-right: auto;
+        background-color: grey;
         `;
         const Image = styled_components__WEBPACK_IMPORTED_MODULE_2__/* ["default"].img */ .ZP.img `
-            width: ${sizeOk}; 
-            min-height: 100%;
-            object-fit: cover;
+        width: ${sizeOk};
+        min-height: 100%;
+        object-fit: cover;
         `;
         const KPIBox = styled_components__WEBPACK_IMPORTED_MODULE_2__/* ["default"].div */ .ZP.div `
-            position: absolute;
-            top: 0;
-            display: flex;
-            background-color: rgb(255, 255, 255);
-            width: fit-content;
-            height: fit-content;
-            min-width: 55px;
-            min-height: 20px;
-            margin-top: 100%;
+        position: absolute;
+        top: 0;
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        width: fit-content;
+        height: fit-content;
+        min-width: 55px;
+        min-height: 20px;
+        margin-top: 100%;
         `;
         const KPIText = styled_components__WEBPACK_IMPORTED_MODULE_2__/* ["default"].p */ .ZP.p `
-            margin: 0;
-            text-transform: uppercase;
-            vertical-align: middle;
-            line-height: 20px;
-            font-weight: 700;
-            margin-left: 0.6em;
-            margin-right: 0.5em;
-            padding: 0.2em;
-            color: ${colorText};
+        margin: 0;
+        text-transform: uppercase;
+        vertical-align: middle;
+        line-height: 20px;
+        font-weight: 700;
+        margin-left: 0.6em;
+        margin-right: 0.5em;
+        padding: 0.2em;
+        color: ${colorText};
         `;
         // const Marcas = styled.div`
         //     position: relative;
@@ -318,7 +317,7 @@ class rankingSettings {
         this.colorRank = _constants__WEBPACK_IMPORTED_MODULE_1__/* .RANK_COLOR */ .eA;
         this.tamanoNumero = _constants__WEBPACK_IMPORTED_MODULE_1__/* .RANK_SIZE */ .fk;
         this.textSize = _constants__WEBPACK_IMPORTED_MODULE_1__/* .RANK_FONT */ .rg;
-        this.secondaryRanking = true;
+        this.turnCards = true;
     }
 }
 class scrollBarSettings {
@@ -415,6 +414,7 @@ class Visual {
                 data.scrollColor = scroll && scroll.scrollBar ? scroll.scrollBar : undefined;
                 data.textSize = indicador && indicador.textSize ? indicador.textSize : undefined;
                 data.colorText = indicador && indicador.colorText ? indicador.colorText : undefined;
+                data.turnCards = ranking && ranking.turnCards ? ranking.turnCards : undefined;
                 data.tamanoRank = ranking && ranking.tamanoNumero ? ranking.tamanoNumero : undefined;
                 data.size = ranking && ranking.tamanoRank ? ranking.tamanoRank : undefined;
                 data.color = ranking && ranking.colorRank ? ranking.colorRank : undefined;
@@ -433,6 +433,7 @@ class Visual {
             data.scrollColor = scroll && scroll.scrollBar ? scroll.scrollBar : undefined;
             data.textSize = indicador && indicador.textSize ? indicador.textSize : undefined;
             data.colorText = indicador && indicador.colorText ? indicador.colorText : undefined;
+            data.turnCards = ranking && ranking.turnCards ? ranking.turnCards : undefined;
             data.tamanoRank = ranking && ranking.tamanoNumero ? ranking.tamanoNumero : undefined;
             data.size = ranking && ranking.tamanoRank ? ranking.tamanoRank : undefined;
             data.color = ranking && ranking.colorRank ? ranking.colorRank : undefined;
@@ -2261,9 +2262,10 @@ module.exports = function shallowEqual(objA, objB, compare, compareContext) {
 
 "use strict";
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ZP": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "ZP": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "iv": () => (/* binding */ Ce)
 /* harmony export */ });
-/* unused harmony exports ServerStyleSheet, StyleSheetConsumer, StyleSheetContext, StyleSheetManager, ThemeConsumer, ThemeContext, ThemeProvider, __PRIVATE__, createGlobalStyle, css, isStyledComponent, keyframes, useTheme, version, withTheme */
+/* unused harmony exports ServerStyleSheet, StyleSheetConsumer, StyleSheetContext, StyleSheetManager, ThemeConsumer, ThemeContext, ThemeProvider, __PRIVATE__, createGlobalStyle, isStyledComponent, keyframes, useTheme, version, withTheme */
 /* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(864);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(294);
 /* harmony import */ var shallowequal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(774);

@@ -5,7 +5,7 @@ export declare class rankingSettings {
     colorRank: string;
     tamanoNumero: number;
     textSize: number;
-    secondaryRanking: boolean;
+    turnCards: boolean;
 }
 export declare class scrollBarSettings {
     scrollBar: string;

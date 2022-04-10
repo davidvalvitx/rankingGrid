@@ -10,7 +10,7 @@ export class rankingSettings {
   public colorRank: string = RANK_COLOR;
   public tamanoNumero: number = RANK_SIZE;
   public textSize: number = RANK_FONT;
-  public secondaryRanking: boolean = true;
+  public turnCards: boolean = true;
 }
 
 export class scrollBarSettings {

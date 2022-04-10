@@ -55,8 +55,8 @@
                         }
                     }
                 },
-                "secondaryRanking": {
-                    "displayName": "Ranking Secundario",
+                "turnCards": {
+                    "displayName": "Girar Cards",
                     "type": {
                         "bool": true
                     }
