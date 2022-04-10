@@ -17,4 +17,5 @@ export declare class indicadorSettings {
 export declare class VisualSettings extends DataViewObjectsParser {
     ranking: rankingSettings;
     indicador: indicadorSettings;
+    scrollbar: scrollBarSettings;
 }

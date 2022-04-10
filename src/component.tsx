@@ -136,20 +136,8 @@ export class RankingGrid extends React.Component<{}, State>{
             height: ${tamanoRank};
         `
 
-        const RankGrey = styled.div`
-            position: inline-block;
+        const RankGrey = styled(Rank)`
             margin-right: auto;
-            align-self: flex-start;
-            align-content: center;
-            justify-content: center;
-            min-height: 15px;
-            min-width: 15px;
-            color: white;
-            padding: 0.5em ;
-            font-weight: 100;
-            max-width: ${sizeOk};
-            min-width: ${tamanoRank};
-            height: ${tamanoRank};
             background-color: grey;
         `
 
@@ -208,7 +196,7 @@ export class RankingGrid extends React.Component<{}, State>{
         return (
             <>
                 <div className="App">
-                    <Scrollbar>
+                    <Scrollbar color={scrollColor}>
                         <Grid>
                             {this.state.Imagen.map(
                                 (x, i) => {

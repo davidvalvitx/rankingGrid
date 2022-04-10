@@ -22,7 +22,7 @@ export const ScrollbarWrapper = styled.div((prop) => ({
         height: "2.3rem"
     },
     "::-webkit-scrollbar-thumb:hover": {
-        background: "grey",
+        background: `${prop.color}`,
         maxHeight: "2.3rem"
     }
 }))

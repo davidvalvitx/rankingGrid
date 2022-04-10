@@ -18,7 +18,6 @@ import VisualObjectInstanceEnumerationObject = powerbi.VisualObjectInstanceEnume
 import { RankingGrid, initialState, State } from "./component";
 import { VisualSettings } from "./settings";
 import "./../style/visual.less";
-import Scrollbar from "./scrollbar/scroll";
 
 
 export class Visual implements IVisual {
@@ -92,7 +91,7 @@ export class Visual implements IVisual {
             this.settings = VisualSettings.parse(dataView) as VisualSettings;
             const indicador = this.settings.indicador;
             const ranking = this.settings.ranking;
-            // const scroll = this.settings.scrollbar;
+            const scroll = this.settings.scrollbar;
 
 
             if (dataView.metadata.segment) {
@@ -101,7 +100,7 @@ export class Visual implements IVisual {
                 stopFetch = !this.host.fetchMoreData();
                 const data = this.dataExtraction(dataView).items;
 
-                // data.scrollColor = scroll && scroll.scrollBar ? scroll.scrollBar : undefined
+                data.scrollColor = scroll && scroll.scrollBar ? scroll.scrollBar : undefined
                 data.textSize = indicador && indicador.textSize ? indicador.textSize : undefined
                 data.colorText = indicador && indicador.colorText ? indicador.colorText : undefined
 
@@ -125,6 +124,7 @@ export class Visual implements IVisual {
             }
             const data = this.dataExtraction(dataView).items;
 
+            data.scrollColor = scroll && scroll.scrollBar ? scroll.scrollBar : undefined
             data.textSize = indicador && indicador.textSize ? indicador.textSize : undefined
             data.colorText = indicador && indicador.colorText ? indicador.colorText : undefined
 

@@ -25,5 +25,5 @@ export class indicadorSettings {
 export class VisualSettings extends DataViewObjectsParser {
   public ranking: rankingSettings = new rankingSettings();
   public indicador: indicadorSettings = new indicadorSettings();
-  // public scrollbar: scrollBarSettings = new scrollBarSettings();
+  public scrollbar: scrollBarSettings = new scrollBarSettings();
 }
