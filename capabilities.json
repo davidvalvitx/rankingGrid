@@ -58,7 +58,7 @@
                 "turnCards": {
                     "displayName": "Girar Cards",
                     "type": {
-                        "bool": true
+                        "bool": false
                     }
                 }
             }

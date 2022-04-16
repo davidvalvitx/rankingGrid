@@ -12,6 +12,7 @@ export interface State {
     textSizeRank?: number;
     scrollColor?: string;
     turnCards?: boolean;
+    tamanoSlicer?: number;
 }
 export declare const initialState: State;
 export declare class RankingGrid extends React.Component<{}, State> {

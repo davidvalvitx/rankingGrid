@@ -1,6 +1,9 @@
 import * as React from "react";
-import Scrollbar from "./scrollbar/scroll";
+import Scrollbar from "./components/scrollbar/scroll";
 import styled, { css } from "styled-components";
+import Slider from '@mui/material/Slider';
+import Grid from '@mui/material/Grid';
+import { styled as muistyle } from '@mui/material/styles';
 
 export interface State {
     Imagen: string[],
@@ -14,14 +17,16 @@ export interface State {
     tamanoRank?: number
     textSizeRank?: number,
     scrollColor?: string,
-    turnCards?: boolean
+    turnCards?: boolean,
+    tamanoSlicer?: number
 }
 
 export const initialState: State = {
     Imagen: [""],
     KPI: [0],
     Ranking: [0],
-    secRank: [0]
+    secRank: [0],
+    tamanoSlicer: 1
 }
 
 export class RankingGrid extends React.Component<{}, State>{
@@ -49,12 +54,39 @@ export class RankingGrid extends React.Component<{}, State>{
     }
 
     render() {
+        var timeout;
         const { size, color, textSize, colorText, tamanoRank, textSizeRank, scrollColor, turnCards } = this.state;
-        const sizeOk = size + "px";
+        const sizeOk = (size * this.state.tamanoSlicer) + "px";
         const size2 = 95 + "px";
-        const alto = (size * 1.5) + "px";
+        const alto = (size * this.state.tamanoSlicer * 1.5) + "px";
 
-        const Grid = styled.div`
+        const handleChange = (event, newValue) => {
+            timeout && clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                this.setState({
+                    tamanoSlicer: newValue
+                });
+            }, 200);
+        };
+
+        const SlideZara = muistyle(Slider)(({ theme }) => ({
+            marginRight: "20px",
+            marginBottom: "20px",
+            marginTop: "25px",
+            width: 100,
+            color: "#000000",
+            '& .MuiSlider-thumb': {
+                border: '1px solid currentColor',
+                '&:focus, &:hover, &.Mui-active': {
+                    boxShadow: '0 0 0 0px rgba(0, 0, 0, 0)'
+                },
+                '&.Mui-focusVisible': {
+                    boxShadow: '0 0 0 0px rgba(0, 0, 0, 0)'
+                }
+            }
+        }));
+
+        const GridR = styled.div`
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(${sizeOk}, 1fr));
             justify-content: start;
@@ -199,7 +231,17 @@ export class RankingGrid extends React.Component<{}, State>{
             <>
                 <div className="App">
                     <Scrollbar color={scrollColor}>
-                        <Grid>
+                        <Grid container justifyContent="flex-end">
+                            <SlideZara
+                                defaultValue={this.state.tamanoSlicer}
+                                step={0.5}
+                                min={1}
+                                max={2}
+                                size="small"
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                        <GridR>
                             {this.state.Imagen.map(
                                 (x, i) => {
                                     return (
@@ -273,7 +315,7 @@ export class RankingGrid extends React.Component<{}, State>{
                                     )
                                 }
                             )}
-                        </Grid>
+                        </GridR>
                     </Scrollbar>
                 </div >
             </>
