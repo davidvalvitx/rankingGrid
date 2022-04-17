@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import * as React from "react";
 
+interface ColorKPI {
+    color?: string,
+    textSize?: number
+}
+
 const KPIBox = styled.div`
 position: absolute;
 top: 0;
@@ -13,7 +18,7 @@ min-height: 20px;
 margin-top: 100%;
 `
 
-const KPIText = styled.p`
+const KPIText = styled.p<ColorKPI>`
 margin: 0;
 text-transform: uppercase;
 vertical-align: middle;
@@ -22,14 +27,14 @@ font-weight: 700;
 margin-left: 0.6em;
 margin-right: 0.5em;
 padding: 0.2em;
+color: ${(props) => props.color};
 `
 
 const KPI = (props) => {
-    const children = props
     return (
         <KPIBox>
-            <KPIText>
-                {children}
+            <KPIText color={props.color} textSize={props.textSize} style={{ "fontSize": props.textSize }}>
+                {props.children}
             </KPIText>
         </KPIBox>
     )

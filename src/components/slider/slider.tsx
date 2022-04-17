@@ -1,25 +1,31 @@
+import Slider from '@mui/material/Slider';
+import { styled as muistyle } from '@mui/material/styles';
 import * as React from "react";
-import { useState, useEffect } from "react";
-import "./styles.css";
+import Grid from '@mui/material/Grid';
 
 
-export default function Slider(props: any) {
-    const [value, onChange] = useState<any>(1);
-    useEffect(() => {
-        const ele = document.querySelector<HTMLElement>('.buble')
-
-        if (ele) {
-            ele.style.left = `${Number(value / 4)}px`;
+export const SlideZara = muistyle(Slider)(({ theme }) => ({
+    marginRight: "20px",
+    marginBottom: "20px",
+    marginTop: "25px",
+    width: 100,
+    color: "#000000",
+    '& .MuiSlider-thumb': {
+        border: '1px solid currentColor',
+        '&:focus, &:hover, &.Mui-active': {
+            boxShadow: '0 0 0 0px rgba(0, 0, 0, 0)'
+        },
+        '&.Mui-focusVisible': {
+            boxShadow: '0 0 0 0px rgba(0, 0, 0, 0)'
         }
-    })
+    }
+}));
 
+export const GridSlider = (props) => {
     return (
-        <div className="slider-parent">
-            <input type="range" className="color" min="1" max="500" value={value}
-                onChange={({ target: { value: radius } }) => {
-                    onChange(radius);
-                }}
-            />
-        </div>
-    );
+        <Grid container justifyContent="flex-end">
+            {props.children}
+        </Grid>
+
+    )
 }

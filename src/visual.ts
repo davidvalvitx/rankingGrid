@@ -104,11 +104,11 @@ export class Visual implements IVisual {
                 data.textSize = indicador && indicador.textSize ? indicador.textSize : undefined
                 data.colorText = indicador && indicador.colorText ? indicador.colorText : undefined
 
-                data.turnCards = ranking && ranking.turnCards ? ranking.turnCards : undefined
-                data.tamanoRank = ranking && ranking.tamanoNumero ? ranking.tamanoNumero : undefined
                 data.size = ranking && ranking.tamanoRank ? ranking.tamanoRank : undefined
                 data.color = ranking && ranking.colorRank ? ranking.colorRank : undefined
+                data.tamanoRank = ranking && ranking.tamanoNumero ? ranking.tamanoNumero : undefined
                 data.textSizeRank = ranking && ranking.textSize ? ranking.textSize : undefined
+                data.turnCards = ranking && ranking.turnCards ? ranking.turnCards : undefined
 
                 RankingGrid.update(data);
                 // console.log(`Cargado ${categoryValues.length}`);
