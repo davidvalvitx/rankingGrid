@@ -380,7 +380,7 @@ const Content = styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"].div
 
 const SlideZara = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .ZP)(_mui_material_Slider__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(({ theme }) => ({
     marginRight: "20px",
-    marginBottom: "0px",
+    marginBottom: "60px",
     marginTop: "25px",
     width: 75,
     color: "#000000",
