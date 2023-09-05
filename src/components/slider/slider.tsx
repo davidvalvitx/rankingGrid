@@ -6,9 +6,9 @@ import Grid from '@mui/material/Grid';
 
 export const SlideZara = muistyle(Slider)(({ theme }) => ({
     marginRight: "20px",
-    marginBottom: "20px",
+    marginBottom: "0px",
     marginTop: "25px",
-    width: 100,
+    width: 75,
     color: "#000000",
     '& .MuiSlider-thumb': {
         border: '1px solid currentColor',
