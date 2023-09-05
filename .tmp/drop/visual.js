@@ -2,7 +2,7 @@ var rankingGrid5026DF9488DA4528B23667923CEF3213_DEBUG;
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 7423:
+/***/ 2524:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11,13 +11,13 @@ var rankingGrid5026DF9488DA4528B23667923CEF3213_DEBUG;
 /* harmony export */   "pt": () => (/* binding */ RankingGrid)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
-/* harmony import */ var _components_scrollbar_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5677);
-/* harmony import */ var _components_card_grid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(205);
-/* harmony import */ var _components_card_flip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(488);
-/* harmony import */ var _components_card_rank__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(594);
-/* harmony import */ var _components_card_kpi__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(31);
-/* harmony import */ var _components_card_layout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(482);
-/* harmony import */ var _components_slider_slider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(338);
+/* harmony import */ var _components_scrollbar_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(584);
+/* harmony import */ var _components_card_grid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6650);
+/* harmony import */ var _components_card_flip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6982);
+/* harmony import */ var _components_card_rank__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9828);
+/* harmony import */ var _components_card_kpi__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8547);
+/* harmony import */ var _components_card_layout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2367);
+/* harmony import */ var _components_slider_slider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(5784);
 
 
 
@@ -52,9 +52,9 @@ class RankingGrid extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     }
     render() {
         const { size, color, textSize, colorText, tamanoRank, textSizeRank, scrollColor, turnCards } = this.state;
-        const sizeOk = (size * this.state.tamanoSlicer) + "px";
-        const alto = (size * this.state.tamanoSlicer * 1.5) + "px";
-        const altoCajaRanking = tamanoRank + "px";
+        const sizeOk = (size * this.state.tamanoSlicer);
+        const alto = (size * this.state.tamanoSlicer * 1.5);
+        // const altoCajaRanking = tamanoRank + "px"
         const handleChange = (event, newValue) => {
             var timeout;
             timeout && clearTimeout(timeout);
@@ -70,11 +70,11 @@ class RankingGrid extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_slider_slider__WEBPACK_IMPORTED_MODULE_7__/* .GridSlider */ .m, null,
                         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_slider_slider__WEBPACK_IMPORTED_MODULE_7__/* .SlideZara */ .f, { defaultValue: this.state.tamanoSlicer, step: 0.5, min: 1, max: 2, size: "small", onChange: handleChange })),
                     react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_grid__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z, { size: sizeOk }, this.state.Imagen.map((x, i) => {
-                        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_flip__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, { size: sizeOk, alto: alto, turnCards: turnCards },
+                        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_flip__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, { size: sizeOk, alto: alto + 35, turnCards: turnCards },
                             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_layout__WEBPACK_IMPORTED_MODULE_6__/* .Info */ .kI, null,
                                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "imagen", style: { "height": alto } },
-                                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_layout__WEBPACK_IMPORTED_MODULE_6__/* .Image */ .Ee, { size: sizeOk, key: i, src: x, alt: "" })),
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_layout__WEBPACK_IMPORTED_MODULE_6__/* .Datos */ .ye, { size: sizeOk, key: i },
+                                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_layout__WEBPACK_IMPORTED_MODULE_6__/* .Image */ .Ee, { size: alto, key: i, src: x, alt: "" })),
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_layout__WEBPACK_IMPORTED_MODULE_6__/* .Datos */ .ye, { size: alto, key: i },
                                     react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_rank__WEBPACK_IMPORTED_MODULE_4__/* .Rank */ .y, { style: { "backgroundColor": color } },
                                         react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", { style: { "fontSize": textSizeRank, "margin": 0, "alignSelf": "center" } }, this.state.Ranking[i])),
                                     react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_rank__WEBPACK_IMPORTED_MODULE_4__/* .RankGrey */ .v, null,
@@ -92,7 +92,7 @@ RankingGrid.updateCallback = null;
 
 /***/ }),
 
-/***/ 488:
+/***/ 6982:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -104,22 +104,23 @@ RankingGrid.updateCallback = null;
 
 
 const Producto = styled_components__WEBPACK_IMPORTED_MODULE_1__/* ["default"].div */ .ZP.div `
+// border: 1px solid transparent;
+// padding: 1px;
+// margin-bottom: 20%;
+// max-width: ${(props) => props.size};
 background-color: transparent;
-border: 1px solid transparent;
-padding: 1px;
-margin-bottom: 20%;
-width:${(props) => props.size};
-height:${(props) => props.alto};
-max-width: ${(props) => props.size};
+width:${(props) => props.size}px;
+height:${(props) => props.alto}px;
 `;
 const ProductoFlip = styled_components__WEBPACK_IMPORTED_MODULE_1__/* ["default"].div */ .ZP.div `
 position: relative;
 width: 100%;
 height: 100%;
+border: 1px solid black;
 text-align: center;
 transition: transform 0.6s;
 transform-style: preserve-3d;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+// box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 ${props => props.turnCards ? styled_components__WEBPACK_IMPORTED_MODULE_1__/* .css */ .iv `
 ${Producto}: hover & {
     transform: rotateY(180deg);
@@ -153,13 +154,13 @@ function Flip(props) {
                         "position": "absolute", "top": "50%",
                         "left": "50%", "marginRight": "-50%",
                         "transform": "translate(-50%,-50%)", "width": "90%"
-                    } }, "Aqu\u00ED se pueden meter m\u00E1s KPIs")))));
+                    } })))));
 }
 
 
 /***/ }),
 
-/***/ 205:
+/***/ 6650:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -171,19 +172,19 @@ function Flip(props) {
 const Grid = styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"].div */ .ZP.div `
 display: grid;
 justify-content: start;
-justify-items: center;
-align-items: center;
-gap: 10px;
+justify-items: left;
+align-items: left;
+gap: 0px;
 `;
 const GridR = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .ZP)(Grid) `
-grid-template-columns: repeat(auto-fill, minmax(${(props) => props.size}, 1fr));
+grid-template-columns: repeat(auto-fill, minmax(${(props) => props.size}px, ${(props) => props.size}px));
 `;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GridR);
 
 
 /***/ }),
 
-/***/ 31:
+/***/ 8547:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -196,24 +197,22 @@ grid-template-columns: repeat(auto-fill, minmax(${(props) => props.size}, 1fr));
 
 const KPIBox = styled_components__WEBPACK_IMPORTED_MODULE_1__/* ["default"].div */ .ZP.div `
 position: absolute;
-top: 0;
+bottom: 0;
 display: flex;
+justify-content: center;
+align-items: center;
 background-color: rgb(255, 255, 255);
-width: fit-content;
-height: fit-content;
-min-width: 55px;
-min-height: 20px;
-margin-top: 100%;
+width: 100%;
+height: 42px;
+border-top: 1px solid black;
 `;
 const KPIText = styled_components__WEBPACK_IMPORTED_MODULE_1__/* ["default"].p */ .ZP.p `
 margin: 0;
 text-transform: uppercase;
 vertical-align: middle;
 line-height: 20px;
-font-weight: 700;
-margin-left: 0.6em;
-margin-right: 0.5em;
-padding: 0.2em;
+font-weight: 600;
+margin-left: 0.8em;
 color: ${(props) => props.color};
 `;
 const KPI = (props) => {
@@ -225,7 +224,7 @@ const KPI = (props) => {
 
 /***/ }),
 
-/***/ 482:
+/***/ 2367:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -243,23 +242,24 @@ const Datos = styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"].div *
 position: absolute;
 top: 0;
 left: 0;
+margin-top: -35px;
+width: 100%;
 display: flex;
 align-items: flex-start;
 flex-direction: row;
 background-color: transparent;
-margin-bottom: 6%;
-height: ${(props) => props.size};
+height: ${(props) => props.size + 35}px;
 `;
 const Image = styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"].img */ .ZP.img `
-min-height: 100%;
+// min-height: 100%;
 object-fit: cover;
-width: ${(props => props.size)};
+height: ${(props => props.size)}px;
 `;
 
 
 /***/ }),
 
-/***/ 594:
+/***/ 9828:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -279,19 +279,23 @@ min-width: 15px;
 color: white;
 padding: 0.5em;
 font-weight: 100;
-// max-width: ${(props) => props.tamano};
-min - width: ${(props) => props.tamano};
-height: ${(props) => props.tamano};
+border: 1px solid black;
+// min-width: ${(props) => props.tamano};
+// height: ${(props) => props.tamano};
 `;
 const RankGrey = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .ZP)(Rank) `
 margin-right: auto;
-background-color: grey;
+width: 100%;
+background-color: rgba(245, 245, 245, 1);
+border: 1px solid black;
+color: black;
+font-weight: 400;
 `;
 
 
 /***/ }),
 
-/***/ 5677:
+/***/ 584:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -300,7 +304,7 @@ background-color: grey;
 /* harmony export */ });
 /* unused harmony export Scrollbar */
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
-/* harmony import */ var _wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3881);
+/* harmony import */ var _wrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7210);
 
 
 const Scrollbar = (prop) => {
@@ -316,7 +320,7 @@ const Scrollbar = (prop) => {
 
 /***/ }),
 
-/***/ 3881:
+/***/ 7210:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -358,7 +362,7 @@ const Content = styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"].div
 
 /***/ }),
 
-/***/ 338:
+/***/ 5784:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -376,9 +380,9 @@ const Content = styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"].div
 
 const SlideZara = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .ZP)(_mui_material_Slider__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(({ theme }) => ({
     marginRight: "20px",
-    marginBottom: "20px",
+    marginBottom: "0px",
     marginTop: "25px",
-    width: 100,
+    width: 75,
     color: "#000000",
     '& .MuiSlider-thumb': {
         border: '1px solid currentColor',
@@ -397,7 +401,7 @@ const GridSlider = (props) => {
 
 /***/ }),
 
-/***/ 3712:
+/***/ 9896:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -421,7 +425,7 @@ const SCROLL_BAR = "#000000";
 
 /***/ }),
 
-/***/ 9746:
+/***/ 2823:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -430,7 +434,7 @@ const SCROLL_BAR = "#000000";
 /* harmony export */ });
 /* unused harmony exports rankingSettings, scrollBarSettings, indicadorSettings */
 /* harmony import */ var powerbi_visuals_utils_dataviewutils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4554);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3712);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9896);
 
 
 var DataViewObjectsParser = powerbi_visuals_utils_dataviewutils__WEBPACK_IMPORTED_MODULE_0__/* .DataViewObjectsParser */ .U;
@@ -467,7 +471,7 @@ class VisualSettings extends DataViewObjectsParser {
 
 /***/ }),
 
-/***/ 8265:
+/***/ 4866:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -476,8 +480,8 @@ class VisualSettings extends DataViewObjectsParser {
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3935);
-/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7423);
-/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9746);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2524);
+/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2823);
 
 
 
@@ -10651,7 +10655,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _src_visual__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8265);
+/* harmony import */ var _src_visual__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4866);
 /* provided dependency */ var window = __webpack_require__(6738);
 
 var powerbiKey = "powerbi";

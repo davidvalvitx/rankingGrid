@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface Layout {
-    size: string
+    size: number
 }
 
 
@@ -12,16 +12,17 @@ export const Datos = styled.div<Layout>`
 position: absolute;
 top: 0;
 left: 0;
+margin-top: -35px;
+width: 100%;
 display: flex;
 align-items: flex-start;
 flex-direction: row;
 background-color: transparent;
-margin-bottom: 6%;
-height: ${(props) => props.size};
+height: ${(props) => props.size +35}px;
 `
 
 export const Image = styled.img<Layout>`
-min-height: 100%;
+// min-height: 100%;
 object-fit: cover;
-width: ${(props => props.size)};
+height: ${(props => props.size)}px;
 `

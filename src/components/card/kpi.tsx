@@ -8,14 +8,14 @@ interface ColorKPI {
 
 const KPIBox = styled.div`
 position: absolute;
-top: 0;
+bottom: 0;
 display: flex;
+justify-content: center;
+align-items: center;
 background-color: rgb(255, 255, 255);
-width: fit-content;
-height: fit-content;
-min-width: 55px;
-min-height: 20px;
-margin-top: 100%;
+width: 100%;
+height: 42px;
+border-top: 1px solid black;
 `
 
 const KPIText = styled.p<ColorKPI>`
@@ -23,10 +23,8 @@ margin: 0;
 text-transform: uppercase;
 vertical-align: middle;
 line-height: 20px;
-font-weight: 700;
-margin-left: 0.6em;
-margin-right: 0.5em;
-padding: 0.2em;
+font-weight: 600;
+margin-left: 0.8em;
 color: ${(props) => props.color};
 `
 

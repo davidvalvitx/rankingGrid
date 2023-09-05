@@ -3,29 +3,30 @@ import styled, { css } from "styled-components";
 
 
 interface Flip {
-    size?: string,
-    alto?: string,
+    size?: number,
+    alto?: number,
     turnCards?: boolean
 }
 
 const Producto = styled.div<Flip>`
+// border: 1px solid transparent;
+// padding: 1px;
+// margin-bottom: 20%;
+// max-width: ${(props) => props.size};
 background-color: transparent;
-border: 1px solid transparent;
-padding: 1px;
-margin-bottom: 20%;
-width:${(props) => props.size};
-height:${(props) => props.alto};
-max-width: ${(props) => props.size};
+width:${(props) => props.size}px;
+height:${(props) => props.alto}px;
 `
 
 const ProductoFlip = styled.div<Flip>`
 position: relative;
 width: 100%;
 height: 100%;
+border: 1px solid black;
 text-align: center;
 transition: transform 0.6s;
 transform-style: preserve-3d;
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+// box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 ${props => props.turnCards ? css`
 ${Producto}: hover & {
     transform: rotateY(180deg);
@@ -65,7 +66,7 @@ export default function Flip(props) {
                         "left": "50%", "marginRight": "-50%",
                         "transform": "translate(-50%,-50%)", "width": "90%"
                     }}>
-                        Aquí se pueden meter más KPIs
+                        
                     </p>
                 </ProductoAtras>
             </ProductoFlip>

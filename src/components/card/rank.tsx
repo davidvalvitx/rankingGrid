@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface Rank {
-    tamano?: string
+    tamano?: number
 }
 
 export const Rank = styled.div<Rank>`
@@ -14,12 +14,16 @@ min-width: 15px;
 color: white;
 padding: 0.5em;
 font-weight: 100;
-// max-width: ${(props) => props.tamano};
-min - width: ${(props) => props.tamano};
-height: ${(props) => props.tamano};
+border: 1px solid black;
+// min-width: ${(props) => props.tamano};
+// height: ${(props) => props.tamano};
 `
 
 export const RankGrey = styled(Rank)`
 margin-right: auto;
-background-color: grey;
+width: 100%;
+background-color: rgba(245, 245, 245, 1);
+border: 1px solid black;
+color: black;
+font-weight: 400;
 `

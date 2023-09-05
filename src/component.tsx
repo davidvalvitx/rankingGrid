@@ -58,9 +58,9 @@ export class RankingGrid extends React.Component<{}, State>{
 
     render() {
         const { size, color, textSize, colorText, tamanoRank, textSizeRank, scrollColor, turnCards } = this.state;
-        const sizeOk = (size * this.state.tamanoSlicer) + "px";
-        const alto = (size * this.state.tamanoSlicer * 1.5) + "px";
-        const altoCajaRanking = tamanoRank + "px"
+        const sizeOk = (size * this.state.tamanoSlicer);
+        const alto = (size * this.state.tamanoSlicer * 1.5);
+        // const altoCajaRanking = tamanoRank + "px"
 
         const handleChange = (event, newValue) => {
             var timeout;
@@ -90,12 +90,12 @@ export class RankingGrid extends React.Component<{}, State>{
                             {this.state.Imagen.map(
                                 (x, i) => {
                                     return (
-                                        <Flip size={sizeOk} alto={alto} turnCards={turnCards}>
+                                        <Flip size={sizeOk} alto={alto + 35} turnCards={turnCards}>
                                             <Info>
                                                 <div className="imagen" style={{ "height": alto }}>
-                                                    <Image size={sizeOk} key={i} src={x} alt="" />
+                                                    <Image size={alto} key={i} src={x} alt="" />
                                                 </div>
-                                                <Datos size={sizeOk} key={i}>
+                                                <Datos size={alto} key={i}>
                                                     <Rank style={{ "backgroundColor": color }}>
                                                         <p style={{ "fontSize": textSizeRank, "margin": 0, "alignSelf": "center" }}>
                                                             {this.state.Ranking[i]}

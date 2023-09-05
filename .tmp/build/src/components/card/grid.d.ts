@@ -1,5 +1,5 @@
 interface SizeInt {
-    size: string;
+    size: number;
 }
 declare const GridR: import("styled-components").StyledComponent<"div", any, SizeInt, never>;
 export default GridR;
