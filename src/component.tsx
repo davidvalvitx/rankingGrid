@@ -117,33 +117,32 @@ export class RankingGrid extends React.Component<{}, State>{
                                     return (
                                         <Flip size={sizeOk} turnCards={turnCards}>
                                             <Info onClick={() => this.handleSelection(x.selectionId)}>
-                                            <Datos key={i}>
-                                                    <Rank style={{ "backgroundColor": color }}>
-                                                        <p style={{ "fontSize": textSizeRank, "margin": 0, "alignSelf": "center" }}>
-                                                            {x.Ranking}
-                                                        </p>
-                                                    </Rank>
-                                                    <RankGrey  style={{"backgroundColor": "#ffffff"}}>
-                                                        <p style={{
-                                                            "fontSize": textSizeRank,
-                                                            "margin": 0, "alignSelf": "center",
-                                                            "overflow": "hidden",
-                                                            "textOverflow": "ellipsis",
-                                                            "whiteSpace": "nowrap"
-                                                        }}>
-                                                            {x.secRank}
-                                                        </p>
-                                                    </RankGrey>
-                                                </Datos>
-                                            <div className="imagen" style={{ "height": alto }}>
-                                                    <Image size={alto} key={i} src={x.Imagen} alt="" />
-                                            </div>
-                                                <KPI color={colorText} textSize={textSize} flag={x.Flag}>
-                                                        {x.KPI.toLocaleString(undefined,
-                                                            { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
+                                                <Datos key={i}>
+                                                        <Rank style={{ "backgroundColor": color }}>
+                                                            <p style={{ "fontSize": textSizeRank, "margin": 0, "alignSelf": "center" }}>
+                                                                {x.Ranking}
+                                                            </p>
+                                                        </Rank>
+                                                        <RankGrey  style={{"backgroundColor": "#ffffff"}}>
+                                                            <p style={{
+                                                                "fontSize": textSizeRank,
+                                                                "margin": 0, "alignSelf": "center",
+                                                                "overflow": "hidden",
+                                                                "textOverflow": "ellipsis",
+                                                                "whiteSpace": "nowrap"
+                                                            }}>
+                                                                {x.secRank}
+                                                            </p>
+                                                        </RankGrey>
+                                                    </Datos>
+                                                <div style={{ "position": "relative", "height": alto }}>
+                                                        <Image size={alto} key={i} src={x.Imagen} alt="" />
+                                                        <Marca flag={x.Flag}></Marca>
+                                                </div>
+                                                    <KPI color={colorText} textSize={textSize} flag={x.Flag}>
+                                                            {x.KPI.toLocaleString(undefined,
+                                                                { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
                                                     </KPI>
-                                            <Marca flag={x.Flag}>
-                                            </Marca>
                                             </Info>
                                         </Flip>
                                     )
