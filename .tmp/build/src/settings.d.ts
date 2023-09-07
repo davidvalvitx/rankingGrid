@@ -3,7 +3,7 @@ import DataViewObjectsParser = dataViewObjectsParser.DataViewObjectsParser;
 export declare class rankingSettings {
     tamanoRank: number;
     colorRank: string;
-    tamanoNumero: number;
+    colorHeader: string;
     textSize: number;
     turnCards: boolean;
 }

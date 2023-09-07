@@ -14,10 +14,15 @@ var rankingGrid5026DF9488DA4528B23667923CEF3213_DEBUG;
 /* harmony import */ var _components_scrollbar_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(584);
 /* harmony import */ var _components_card_grid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6650);
 /* harmony import */ var _components_card_flip__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6982);
-/* harmony import */ var _components_card_rank__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9828);
-/* harmony import */ var _components_card_kpi__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8547);
-/* harmony import */ var _components_card_layout__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(2367);
-/* harmony import */ var _components_slider_slider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(5784);
+/* harmony import */ var _components_card_flag__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6420);
+/* harmony import */ var _components_card_rank__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9828);
+/* harmony import */ var _components_card_kpi__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8547);
+/* harmony import */ var _components_card_layout__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2367);
+/* harmony import */ var _components_slider_slider__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(5784);
+/* harmony import */ var _visual__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(4866);
+
+
+
 
 
 
@@ -27,10 +32,15 @@ var rankingGrid5026DF9488DA4528B23667923CEF3213_DEBUG;
 
 
 const initialState = {
-    Imagen: [""],
-    KPI: [0],
-    Ranking: [0],
-    secRank: [0],
+    data: [
+        {
+            Imagen: "",
+            KPI: 0,
+            Ranking: 0,
+            secRank: 0,
+            Flag: 0,
+        }
+    ],
     tamanoSlicer: 1
 };
 class RankingGrid extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
@@ -50,8 +60,11 @@ class RankingGrid extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
     componentWillUnmount() {
         RankingGrid.updateCallback = null;
     }
+    handleSelection(selectionId) {
+        _visual__WEBPACK_IMPORTED_MODULE_9__/* .Visual */ .u;
+    }
     render() {
-        const { size, color, textSize, colorText, tamanoRank, textSizeRank, scrollColor, turnCards } = this.state;
+        const { size, color, textSize, colorText, textSizeRank, scrollColor, turnCards } = this.state;
         const sizeOk = (size * this.state.tamanoSlicer);
         const alto = (size * this.state.tamanoSlicer * 1.5);
         // const altoCajaRanking = tamanoRank + "px"
@@ -67,27 +80,69 @@ class RankingGrid extends react__WEBPACK_IMPORTED_MODULE_0__.Component {
         return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "App" },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_scrollbar_scroll__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, { color: scrollColor },
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_slider_slider__WEBPACK_IMPORTED_MODULE_7__/* .GridSlider */ .m, null,
-                        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_slider_slider__WEBPACK_IMPORTED_MODULE_7__/* .SlideZara */ .f, { defaultValue: this.state.tamanoSlicer, step: 0.5, min: 1, max: 2, size: "small", onChange: handleChange })),
-                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_grid__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z, { size: sizeOk }, this.state.Imagen.map((x, i) => {
-                        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_flip__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, { size: sizeOk, alto: alto + 35, turnCards: turnCards },
-                            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_layout__WEBPACK_IMPORTED_MODULE_6__/* .Info */ .kI, null,
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "imagen", style: { "height": alto } },
-                                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_layout__WEBPACK_IMPORTED_MODULE_6__/* .Image */ .Ee, { size: alto, key: i, src: x, alt: "" })),
-                                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_layout__WEBPACK_IMPORTED_MODULE_6__/* .Datos */ .ye, { size: alto, key: i },
-                                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_rank__WEBPACK_IMPORTED_MODULE_4__/* .Rank */ .y, { style: { "backgroundColor": color } },
-                                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", { style: { "fontSize": textSizeRank, "margin": 0, "alignSelf": "center" } }, this.state.Ranking[i])),
-                                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_rank__WEBPACK_IMPORTED_MODULE_4__/* .RankGrey */ .v, null,
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_slider_slider__WEBPACK_IMPORTED_MODULE_8__/* .GridSlider */ .m, null,
+                        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_slider_slider__WEBPACK_IMPORTED_MODULE_8__/* .SlideZara */ .f, { defaultValue: this.state.tamanoSlicer, step: 0.5, min: 1, max: 2, size: "small", onChange: handleChange })),
+                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_grid__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z, { size: sizeOk }, this.state.data.map((x, i) => {
+                        return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_flip__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, { size: sizeOk, turnCards: turnCards },
+                            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_layout__WEBPACK_IMPORTED_MODULE_7__/* .Info */ .kI, { onClick: () => this.handleSelection(x.selectionId) },
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_layout__WEBPACK_IMPORTED_MODULE_7__/* .Datos */ .ye, { key: i },
+                                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_rank__WEBPACK_IMPORTED_MODULE_5__/* .Rank */ .y, { style: { "backgroundColor": color } },
+                                        react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", { style: { "fontSize": textSizeRank, "margin": 0, "alignSelf": "center" } }, x.Ranking)),
+                                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_rank__WEBPACK_IMPORTED_MODULE_5__/* .RankGrey */ .v, { style: { "backgroundColor": "#ffffff" } },
                                         react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", { style: {
                                                 "fontSize": textSizeRank,
-                                                "margin": 0, "alignSelf": "center"
-                                            } }, this.state.secRank[i])),
-                                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_kpi__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, { color: colorText, textSize: textSize }, this.state.KPI[i].toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 }))))));
+                                                "margin": 0, "alignSelf": "center",
+                                                "overflow": "hidden",
+                                                "textOverflow": "ellipsis",
+                                                "whiteSpace": "nowrap"
+                                            } }, x.secRank))),
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", { className: "imagen", style: { "height": alto } },
+                                    react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_layout__WEBPACK_IMPORTED_MODULE_7__/* .Image */ .Ee, { size: alto, key: i, src: x.Imagen, alt: "" })),
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_kpi__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, { color: colorText, textSize: textSize, flag: x.Flag }, x.KPI.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })),
+                                react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_card_flag__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, { flag: x.Flag }))));
                     }))))));
     }
 }
 RankingGrid.updateCallback = null;
 /* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ((/* unused pure expression or super */ null && (RankingGrid)));
+
+
+/***/ }),
+
+/***/ 6420:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1893);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+/* harmony import */ var _svg_react_loader_icon_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(44);
+/* harmony import */ var _svg_react_loader_icon_svg__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_svg_react_loader_icon_svg__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+const Icon2 = (0,styled_components__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)((_svg_react_loader_icon_svg__WEBPACK_IMPORTED_MODULE_1___default())) `
+height: 2em;
+width: 2em;
+`;
+const Flag = styled_components__WEBPACK_IMPORTED_MODULE_2__/* ["default"].div */ .ZP.div `
+position: absolute;
+top: 0;
+right: 0;
+z-index: 99;
+width: 42px;
+height: 42px;
+margin-left: auto;
+margin-right: 0.2em;
+display: ${(props) => props.flag === 1 ? null : "none"};
+`;
+const Marca = (props) => {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(Flag, { flag: props.flag },
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(Icon2, null)));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Marca);
 
 
 /***/ }),
@@ -104,9 +159,7 @@ RankingGrid.updateCallback = null;
 
 
 const Producto = styled_components__WEBPACK_IMPORTED_MODULE_1__/* ["default"].div */ .ZP.div `
-// border: 1px solid transparent;
-// padding: 1px;
-// margin-bottom: 20%;
+
 // max-width: ${(props) => props.size};
 background-color: transparent;
 width:${(props) => props.size}px;
@@ -120,7 +173,6 @@ border: 1px solid black;
 text-align: center;
 transition: transform 0.6s;
 transform-style: preserve-3d;
-// box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 ${props => props.turnCards ? styled_components__WEBPACK_IMPORTED_MODULE_1__/* .css */ .iv `
 ${Producto}: hover & {
     transform: rotateY(180deg);
@@ -196,8 +248,6 @@ grid-template-columns: repeat(auto-fill, minmax(${(props) => props.size}px, ${(p
 
 
 const KPIBox = styled_components__WEBPACK_IMPORTED_MODULE_1__/* ["default"].div */ .ZP.div `
-position: absolute;
-bottom: 0;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -206,17 +256,18 @@ width: 100%;
 height: 42px;
 border-top: 1px solid black;
 `;
-const KPIText = styled_components__WEBPACK_IMPORTED_MODULE_1__/* ["default"].p */ .ZP.p `
+const KPIText = styled_components__WEBPACK_IMPORTED_MODULE_1__/* ["default"].div */ .ZP.div `
 margin: 0;
 text-transform: uppercase;
 vertical-align: middle;
 line-height: 20px;
 font-weight: 600;
-margin-left: 0.8em;
 color: ${(props) => props.color};
 `;
 const KPI = (props) => {
-    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(KPIBox, null,
+    return (
+    // <KPIBox style={props.flag === 7901 ? {"backgroundColor": "#fcba03"} : {"backgroundColor": "#FFFFFF"}}>
+    react__WEBPACK_IMPORTED_MODULE_0__.createElement(KPIBox, null,
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(KPIText, { color: props.color, textSize: props.textSize, style: { "fontSize": props.textSize } }, props.children)));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (KPI);
@@ -237,21 +288,17 @@ const KPI = (props) => {
 
 const Info = styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"].div */ .ZP.div `
 display: flex;
+flex-direction: column;
 `;
 const Datos = styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"].div */ .ZP.div `
-position: absolute;
-top: 0;
-left: 0;
-margin-top: -35px;
 width: 100%;
 display: flex;
 align-items: flex-start;
 flex-direction: row;
 background-color: transparent;
-height: ${(props) => props.size + 35}px;
 `;
 const Image = styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"].img */ .ZP.img `
-// min-height: 100%;
+max-width: 100%;
 object-fit: cover;
 height: ${(props => props.size)}px;
 `;
@@ -278,16 +325,17 @@ min-height: 15px;
 min-width: 15px;
 color: white;
 padding: 0.5em;
-font-weight: 100;
-border: 1px solid black;
-// min-width: ${(props) => props.tamano};
+font-weight: 400;
+border-bottom: 1px solid black;
+min-width: ${(props) => props.tamano};
 // height: ${(props) => props.tamano};
+text-overflow: ellipsis;
 `;
 const RankGrey = (0,styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .ZP)(Rank) `
 margin-right: auto;
 width: 100%;
-background-color: rgba(245, 245, 245, 1);
-border: 1px solid black;
+background-color: ${(props) => props.color};
+border-bottom: 1px solid black;
 color: black;
 font-weight: 400;
 `;
@@ -380,9 +428,13 @@ const Content = styled_components__WEBPACK_IMPORTED_MODULE_0__/* ["default"].div
 
 const SlideZara = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .ZP)(_mui_material_Slider__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(({ theme }) => ({
     marginRight: "20px",
-    marginBottom: "60px",
+    marginBottom: "20px",
     marginTop: "25px",
-    width: 75,
+    width: 100,
+    position: "absolute",
+    top: 0,
+    right: 0,
+    zIndex: 999,
     color: "#000000",
     '& .MuiSlider-thumb': {
         border: '1px solid currentColor',
@@ -409,16 +461,16 @@ const GridSlider = (props) => {
 /* harmony export */   "JB": () => (/* binding */ TEXT_SIZE),
 /* harmony export */   "NO": () => (/* binding */ SIZE),
 /* harmony export */   "Q_": () => (/* binding */ SCROLL_BAR),
+/* harmony export */   "Qi": () => (/* binding */ RANK_BG),
 /* harmony export */   "eA": () => (/* binding */ RANK_COLOR),
-/* harmony export */   "fk": () => (/* binding */ RANK_SIZE),
 /* harmony export */   "ou": () => (/* binding */ TEXT_COLOR),
 /* harmony export */   "rg": () => (/* binding */ RANK_FONT)
 /* harmony export */ });
-const SIZE = 170;
-const RANK_SIZE = 12;
-const RANK_FONT = 14;
+const SIZE = 200;
+const RANK_FONT = 16;
 const RANK_COLOR = "#000000";
-const TEXT_SIZE = 12;
+const RANK_BG = "#6e6e6e";
+const TEXT_SIZE = 16;
 const TEXT_COLOR = "#000000";
 const SCROLL_BAR = "#000000";
 
@@ -443,7 +495,7 @@ class rankingSettings {
     constructor() {
         this.tamanoRank = _constants__WEBPACK_IMPORTED_MODULE_1__/* .SIZE */ .NO;
         this.colorRank = _constants__WEBPACK_IMPORTED_MODULE_1__/* .RANK_COLOR */ .eA;
-        this.tamanoNumero = _constants__WEBPACK_IMPORTED_MODULE_1__/* .RANK_SIZE */ .fk;
+        this.colorHeader = _constants__WEBPACK_IMPORTED_MODULE_1__/* .RANK_BG */ .Qi;
         this.textSize = _constants__WEBPACK_IMPORTED_MODULE_1__/* .RANK_FONT */ .rg;
         this.turnCards = false;
     }
@@ -482,6 +534,8 @@ class VisualSettings extends DataViewObjectsParser {
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3935);
 /* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2524);
 /* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2823);
+/* harmony import */ var powerbi_visuals_utils_dataviewutils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2581);
+
 
 
 
@@ -489,10 +543,25 @@ class VisualSettings extends DataViewObjectsParser {
 
 class Visual {
     constructor(options) {
+        this.visualTransform = (dataview) => {
+            this.settings = _settings__WEBPACK_IMPORTED_MODULE_3__/* .VisualSettings.parse */ .Jx.parse(dataview);
+            if (dataview) {
+                var metadata = dataview.metadata;
+                if (metadata && metadata.objects && metadata.objects.ranking && metadata.objects.ranking.colorHeader) {
+                    this.settings.ranking.colorHeader = metadata.objects.ranking.colorHeader.solid.color;
+                }
+            }
+        };
+        this.selectedValue = (obj, number) => {
+            this.selectionManager.select(obj.data[number].selectionId);
+        };
+        this.getMoreData = () => {
+            this.host.fetchMoreData();
+        };
         this.reactRoot = react__WEBPACK_IMPORTED_MODULE_0__.createElement(_component__WEBPACK_IMPORTED_MODULE_2__/* .RankingGrid */ .pt, {});
         this.target = options.element;
         this.host = options.host;
-        // options.element.style.overflow = 'auto';
+        this.selectionManager = this.host.createSelectionManager();
         react_dom__WEBPACK_IMPORTED_MODULE_1__.render(this.reactRoot, this.target);
     }
     clear() {
@@ -505,68 +574,77 @@ class Visual {
         let KPIValues = dataView.categorical.values[0].values;
         let RankingValues = dataView.categorical.values[1].values;
         let secRank = dataView.categorical.values[2].values;
-        const items = { Imagen: [], KPI: [], Ranking: [], secRank: [] };
-        // const items: State = { Imagen: [], KPI: [], Ranking: [] }
-        for (let i = 0; i < categoryValues.length; i++) {
-            let image = categoryValues[i].valueOf();
-            let kpi = KPIValues[i].valueOf();
-            let rank = RankingValues[i].valueOf();
-            let rankSec = secRank[i].valueOf();
-            items.Imagen.push(image);
-            items.KPI.push(kpi);
-            items.Ranking.push(rank);
-            items.secRank.push(rankSec);
-        }
-        return {
-            items
+        let Flag = dataView.categorical.values[3].values;
+        const Datapoints = {
+            data: []
         };
+        for (let i = 0; i < categoryValues.length; i++) {
+            const categorySelectionId = this.host.createSelectionIdBuilder()
+                .withCategory(categoryColumn, i)
+                .createSelectionId();
+            Datapoints.data.push({
+                Imagen: categoryValues[i].valueOf(),
+                KPI: KPIValues[i].valueOf(),
+                Ranking: RankingValues[i].valueOf(),
+                secRank: secRank[i].valueOf(),
+                Flag: Flag[i].valueOf(),
+                selectionId: categorySelectionId
+            });
+        }
+        return { Datapoints };
     }
     enumerateObjectInstances(options) {
+        let objectName = options.objectName;
+        let objectEnumeration = [];
+        switch (objectName) {
+            case 'ranking':
+                objectEnumeration.push({
+                    objectName: objectName,
+                    properties: {
+                        colorHeader: this.settings.ranking.colorHeader
+                    },
+                    propertyInstanceKind: {
+                        colorHeader: 3 /* ConstantOrRule */
+                    },
+                    altConstantValueSelector: null,
+                    selector: powerbi_visuals_utils_dataviewutils__WEBPACK_IMPORTED_MODULE_4__/* .createDataViewWildcardSelector */ .p(0 /* InstancesAndTotals */)
+                });
+                break;
+        }
+        ;
         return _settings__WEBPACK_IMPORTED_MODULE_3__/* .VisualSettings.enumerateObjectInstances */ .Jx.enumerateObjectInstances(this.settings || _settings__WEBPACK_IMPORTED_MODULE_3__/* .VisualSettings.getDefault */ .Jx.getDefault(), options);
+        // return objectEnumeration;
     }
     update(options) {
         if (options && options.dataViews && options.dataViews[0]) {
             const dataView = options.dataViews[0];
+            this.visualTransform(dataView);
             const categoricalDataView = dataView.categorical;
             const categoryColumn = categoricalDataView.categories[0];
             const categoryValues = categoryColumn.values;
-            // To fetch more data:
             this.settings = _settings__WEBPACK_IMPORTED_MODULE_3__/* .VisualSettings.parse */ .Jx.parse(dataView);
             const indicador = this.settings.indicador;
             const ranking = this.settings.ranking;
             const scroll = this.settings.scrollbar;
-            if (dataView.metadata.segment) {
-                let stopFetch = false;
-                stopFetch = !this.host.fetchMoreData();
-                const data = this.dataExtraction(dataView).items;
-                data.scrollColor = scroll && scroll.scrollBar ? scroll.scrollBar : undefined;
-                data.textSize = indicador && indicador.textSize ? indicador.textSize : undefined;
-                data.colorText = indicador && indicador.colorText ? indicador.colorText : undefined;
-                data.size = ranking && ranking.tamanoRank ? ranking.tamanoRank : undefined;
-                data.color = ranking && ranking.colorRank ? ranking.colorRank : undefined;
-                data.tamanoRank = ranking && ranking.tamanoNumero ? ranking.tamanoNumero : undefined;
-                data.textSizeRank = ranking && ranking.textSize ? ranking.textSize : undefined;
-                data.turnCards = ranking && ranking.turnCards ? ranking.turnCards : undefined;
-                _component__WEBPACK_IMPORTED_MODULE_2__/* .RankingGrid.update */ .pt.update(data);
-                // console.log(`Cargado ${categoryValues.length}`);
-                // console.log(`Paro?: ${stopFetch}`);
-                if (stopFetch) {
-                    // console.log(`Cargado ${categoryValues.length}`);
-                }
-                else {
-                    // console.log('Listo');
-                }
+            const data = this.dataExtraction(dataView).Datapoints;
+            const lastCall = (dataView.metadata.segment) ? false : true;
+            const stopFetch = !this.host.fetchMoreData();
+            if (!lastCall) {
+                this.host.fetchMoreData();
             }
-            const data = this.dataExtraction(dataView).items;
+            else {
+                stopFetch;
+            }
             data.scrollColor = scroll && scroll.scrollBar ? scroll.scrollBar : undefined;
             data.textSize = indicador && indicador.textSize ? indicador.textSize : undefined;
             data.colorText = indicador && indicador.colorText ? indicador.colorText : undefined;
             data.turnCards = ranking && ranking.turnCards ? ranking.turnCards : undefined;
-            data.tamanoRank = ranking && ranking.tamanoNumero ? ranking.tamanoNumero : undefined;
             data.size = ranking && ranking.tamanoRank ? ranking.tamanoRank : undefined;
             data.color = ranking && ranking.colorRank ? ranking.colorRank : undefined;
             data.textSizeRank = ranking && ranking.textSize ? ranking.textSize : undefined;
+            // data.colorHeader = ranking && ranking.colorHeader ? ranking.colorHeader : undefined
             console.log(data);
+            // this.selectedValue(data, 27)
             _component__WEBPACK_IMPORTED_MODULE_2__/* .RankingGrid.update */ .pt.update(data);
         }
         else {
@@ -8757,6 +8835,57 @@ DataViewObjectsParser.InnumerablePropertyPrefix = /^_/;
 
 /***/ }),
 
+/***/ 2581:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "p": () => (/* binding */ createDataViewWildcardSelector)
+/* harmony export */ });
+/*
+*  Power BI Visualizations
+*
+*  Copyright (c) Microsoft Corporation
+*  All rights reserved.
+*  MIT License
+*
+*  Permission is hereby granted, free of charge, to any person obtaining a copy
+*  of this software and associated documentation files (the ""Software""), to deal
+*  in the Software without restriction, including without limitation the rights
+*  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+*  copies of the Software, and to permit persons to whom the Software is
+*  furnished to do so, subject to the following conditions:
+*
+*  The above copyright notice and this permission notice shall be included in
+*  all copies or substantial portions of the Software.
+*
+*  THE SOFTWARE IS PROVIDED *AS IS*, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+*  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+*  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+*  THE SOFTWARE.
+*/
+function createDataViewWildcardSelector(dataViewWildcardMatchingOption) {
+    if (dataViewWildcardMatchingOption == null) {
+        dataViewWildcardMatchingOption = 0 /* InstancesAndTotals */;
+    }
+    let selector = {
+        data: [
+            {
+                dataViewWildcard: {
+                    matchingOption: dataViewWildcardMatchingOption
+                }
+            }
+        ]
+    };
+    return selector;
+}
+//# sourceMappingURL=dataViewWildcard.js.map
+
+/***/ }),
+
 /***/ 4155:
 /***/ ((module) => {
 
@@ -9519,6 +9648,24 @@ module.exports = function shallowEqual(objA, objB, compare, compareContext) {
 /* provided dependency */ var window = __webpack_require__(6738);
 function v(){return(v=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var r in n)Object.prototype.hasOwnProperty.call(n,r)&&(e[r]=n[r])}return e}).apply(this,arguments)}var g=function(e,t){for(var n=[e[0]],r=0,o=t.length;r<o;r+=1)n.push(t[r],e[r+1]);return n},S=function(t){return null!==t&&"object"==typeof t&&"[object Object]"===(t.toString?t.toString():Object.prototype.toString.call(t))&&!(0,react_is__WEBPACK_IMPORTED_MODULE_0__.typeOf)(t)},w=Object.freeze([]),E=Object.freeze({});function b(e){return"function"==typeof e}function _(e){return false||e.displayName||e.name||"Component"}function N(e){return e&&"string"==typeof e.styledComponentId}var A="undefined"!=typeof process&&(process.env.REACT_APP_SC_ATTR||process.env.SC_ATTR)||"data-styled",C="5.3.5",I="undefined"!=typeof window&&"HTMLElement"in window,P=Boolean("boolean"==typeof SC_DISABLE_SPEEDY?SC_DISABLE_SPEEDY:"undefined"!=typeof process&&void 0!==process.env.REACT_APP_SC_DISABLE_SPEEDY&&""!==process.env.REACT_APP_SC_DISABLE_SPEEDY?"false"!==process.env.REACT_APP_SC_DISABLE_SPEEDY&&process.env.REACT_APP_SC_DISABLE_SPEEDY:"undefined"!=typeof process&&void 0!==process.env.SC_DISABLE_SPEEDY&&""!==process.env.SC_DISABLE_SPEEDY?"false"!==process.env.SC_DISABLE_SPEEDY&&process.env.SC_DISABLE_SPEEDY:"production"!=="production"),O={},R= false?0:{};function D(){for(var e=arguments.length<=0?void 0:arguments[0],t=[],n=1,r=arguments.length;n<r;n+=1)t.push(n<0||arguments.length<=n?void 0:arguments[n]);return t.forEach((function(t){e=e.replace(/%[a-z]/,t)})),e}function j(e){for(var t=arguments.length,n=new Array(t>1?t-1:0),r=1;r<t;r++)n[r-1]=arguments[r];throw true?new Error("An error occurred. See https://git.io/JUIaE#"+e+" for more information."+(n.length>0?" Args: "+n.join(", "):"")):0}var T=function(){function e(e){this.groupSizes=new Uint32Array(512),this.length=512,this.tag=e}var t=e.prototype;return t.indexOfGroup=function(e){for(var t=0,n=0;n<e;n++)t+=this.groupSizes[n];return t},t.insertRules=function(e,t){if(e>=this.groupSizes.length){for(var n=this.groupSizes,r=n.length,o=r;e>=o;)(o<<=1)<0&&j(16,""+e);this.groupSizes=new Uint32Array(o),this.groupSizes.set(n),this.length=o;for(var s=r;s<o;s++)this.groupSizes[s]=0}for(var i=this.indexOfGroup(e+1),a=0,c=t.length;a<c;a++)this.tag.insertRule(i,t[a])&&(this.groupSizes[e]++,i++)},t.clearGroup=function(e){if(e<this.length){var t=this.groupSizes[e],n=this.indexOfGroup(e),r=n+t;this.groupSizes[e]=0;for(var o=n;o<r;o++)this.tag.deleteRule(n)}},t.getGroup=function(e){var t="";if(e>=this.length||0===this.groupSizes[e])return t;for(var n=this.groupSizes[e],r=this.indexOfGroup(e),o=r+n,s=r;s<o;s++)t+=this.tag.getRule(s)+"/*!sc*/\n";return t},e}(),x=new Map,k=new Map,V=1,B=function(e){if(x.has(e))return x.get(e);for(;k.has(V);)V++;var t=V++;return false&&0,x.set(e,t),k.set(t,e),t},z=function(e){return k.get(e)},M=function(e,t){t>=V&&(V=t+1),x.set(e,t),k.set(t,e)},G="style["+A+'][data-styled-version="5.3.5"]',L=new RegExp("^"+A+'\\.g(\\d+)\\[id="([\\w\\d-]+)"\\].*?"([^"]*)'),F=function(e,t,n){for(var r,o=n.split(","),s=0,i=o.length;s<i;s++)(r=o[s])&&e.registerName(t,r)},Y=function(e,t){for(var n=(t.textContent||"").split("/*!sc*/\n"),r=[],o=0,s=n.length;o<s;o++){var i=n[o].trim();if(i){var a=i.match(L);if(a){var c=0|parseInt(a[1],10),u=a[2];0!==c&&(M(u,c),F(e,u,a[3]),e.getTag().insertRules(c,r)),r.length=0}else r.push(i)}}},q=function(){return"undefined"!=typeof window&&void 0!==window.__webpack_nonce__?window.__webpack_nonce__:null},H=function(e){var t=document.head,n=e||t,r=document.createElement("style"),o=function(e){for(var t=e.childNodes,n=t.length;n>=0;n--){var r=t[n];if(r&&1===r.nodeType&&r.hasAttribute(A))return r}}(n),s=void 0!==o?o.nextSibling:null;r.setAttribute(A,"active"),r.setAttribute("data-styled-version","5.3.5");var i=q();return i&&r.setAttribute("nonce",i),n.insertBefore(r,s),r},$=function(){function e(e){var t=this.element=H(e);t.appendChild(document.createTextNode("")),this.sheet=function(e){if(e.sheet)return e.sheet;for(var t=document.styleSheets,n=0,r=t.length;n<r;n++){var o=t[n];if(o.ownerNode===e)return o}j(17)}(t),this.length=0}var t=e.prototype;return t.insertRule=function(e,t){try{return this.sheet.insertRule(t,e),this.length++,!0}catch(e){return!1}},t.deleteRule=function(e){this.sheet.deleteRule(e),this.length--},t.getRule=function(e){var t=this.sheet.cssRules[e];return void 0!==t&&"string"==typeof t.cssText?t.cssText:""},e}(),W=function(){function e(e){var t=this.element=H(e);this.nodes=t.childNodes,this.length=0}var t=e.prototype;return t.insertRule=function(e,t){if(e<=this.length&&e>=0){var n=document.createTextNode(t),r=this.nodes[e];return this.element.insertBefore(n,r||null),this.length++,!0}return!1},t.deleteRule=function(e){this.element.removeChild(this.nodes[e]),this.length--},t.getRule=function(e){return e<this.length?this.nodes[e].textContent:""},e}(),U=function(){function e(e){this.rules=[],this.length=0}var t=e.prototype;return t.insertRule=function(e,t){return e<=this.length&&(this.rules.splice(e,0,t),this.length++,!0)},t.deleteRule=function(e){this.rules.splice(e,1),this.length--},t.getRule=function(e){return e<this.length?this.rules[e]:""},e}(),J=I,X={isServer:!I,useCSSOMInjection:!P},Z=function(){function e(e,t,n){void 0===e&&(e=E),void 0===t&&(t={}),this.options=v({},X,{},e),this.gs=t,this.names=new Map(n),this.server=!!e.isServer,!this.server&&I&&J&&(J=!1,function(e){for(var t=document.querySelectorAll(G),n=0,r=t.length;n<r;n++){var o=t[n];o&&"active"!==o.getAttribute(A)&&(Y(e,o),o.parentNode&&o.parentNode.removeChild(o))}}(this))}e.registerId=function(e){return B(e)};var t=e.prototype;return t.reconstructWithOptions=function(t,n){return void 0===n&&(n=!0),new e(v({},this.options,{},t),this.gs,n&&this.names||void 0)},t.allocateGSInstance=function(e){return this.gs[e]=(this.gs[e]||0)+1},t.getTag=function(){return this.tag||(this.tag=(n=(t=this.options).isServer,r=t.useCSSOMInjection,o=t.target,e=n?new U(o):r?new $(o):new W(o),new T(e)));var e,t,n,r,o},t.hasNameForId=function(e,t){return this.names.has(e)&&this.names.get(e).has(t)},t.registerName=function(e,t){if(B(e),this.names.has(e))this.names.get(e).add(t);else{var n=new Set;n.add(t),this.names.set(e,n)}},t.insertRules=function(e,t,n){this.registerName(e,t),this.getTag().insertRules(B(e),n)},t.clearNames=function(e){this.names.has(e)&&this.names.get(e).clear()},t.clearRules=function(e){this.getTag().clearGroup(B(e)),this.clearNames(e)},t.clearTag=function(){this.tag=void 0},t.toString=function(){return function(e){for(var t=e.getTag(),n=t.length,r="",o=0;o<n;o++){var s=z(o);if(void 0!==s){var i=e.names.get(s),a=t.getGroup(o);if(i&&a&&i.size){var c=A+".g"+o+'[id="'+s+'"]',u="";void 0!==i&&i.forEach((function(e){e.length>0&&(u+=e+",")})),r+=""+a+c+'{content:"'+u+'"}/*!sc*/\n'}}}return r}(this)},e}(),K=/(a)(d)/gi,Q=function(e){return String.fromCharCode(e+(e>25?39:97))};function ee(e){var t,n="";for(t=Math.abs(e);t>52;t=t/52|0)n=Q(t%52)+n;return(Q(t%52)+n).replace(K,"$1-$2")}var te=function(e,t){for(var n=t.length;n;)e=33*e^t.charCodeAt(--n);return e},ne=function(e){return te(5381,e)};function re(e){for(var t=0;t<e.length;t+=1){var n=e[t];if(b(n)&&!N(n))return!1}return!0}var oe=ne("5.3.5"),se=function(){function e(e,t,n){this.rules=e,this.staticRulesId="",this.isStatic= true&&(void 0===n||n.isStatic)&&re(e),this.componentId=t,this.baseHash=te(oe,t),this.baseStyle=n,Z.registerId(t)}return e.prototype.generateAndInjectStyles=function(e,t,n){var r=this.componentId,o=[];if(this.baseStyle&&o.push(this.baseStyle.generateAndInjectStyles(e,t,n)),this.isStatic&&!n.hash)if(this.staticRulesId&&t.hasNameForId(r,this.staticRulesId))o.push(this.staticRulesId);else{var s=Ne(this.rules,e,t,n).join(""),i=ee(te(this.baseHash,s)>>>0);if(!t.hasNameForId(r,i)){var a=n(s,"."+i,void 0,r);t.insertRules(r,i,a)}o.push(i),this.staticRulesId=i}else{for(var c=this.rules.length,u=te(this.baseHash,n.hash),l="",d=0;d<c;d++){var h=this.rules[d];if("string"==typeof h)l+=h, false&&(0);else if(h){var p=Ne(h,e,t,n),f=Array.isArray(p)?p.join(""):p;u=te(u,f+d),l+=f}}if(l){var m=ee(u>>>0);if(!t.hasNameForId(r,m)){var y=n(l,"."+m,void 0,r);t.insertRules(r,m,y)}o.push(m)}}return o.join(" ")},e}(),ie=/^\s*\/\/.*$/gm,ae=[":","[",".","#"];function ce(e){var t,n,r,o,s=void 0===e?E:e,i=s.options,a=void 0===i?E:i,c=s.plugins,u=void 0===c?w:c,l=new _emotion_stylis__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z(a),d=[],h=function(e){function t(t){if(t)try{e(t+"}")}catch(e){}}return function(n,r,o,s,i,a,c,u,l,d){switch(n){case 1:if(0===l&&64===r.charCodeAt(0))return e(r+";"),"";break;case 2:if(0===u)return r+"/*|*/";break;case 3:switch(u){case 102:case 112:return e(o[0]+r),"";default:return r+(0===d?"/*|*/":"")}case-2:r.split("/*|*/}").forEach(t)}}}((function(e){d.push(e)})),f=function(e,r,s){return 0===r&&-1!==ae.indexOf(s[n.length])||s.match(o)?e:"."+t};function m(e,s,i,a){void 0===a&&(a="&");var c=e.replace(ie,""),u=s&&i?i+" "+s+" { "+c+" }":c;return t=a,n=s,r=new RegExp("\\"+n+"\\b","g"),o=new RegExp("(\\"+n+"\\b){2,}"),l(i||!s?"":s,u)}return l.use([].concat(u,[function(e,t,o){2===e&&o.length&&o[0].lastIndexOf(n)>0&&(o[0]=o[0].replace(r,f))},h,function(e){if(-2===e){var t=d;return d=[],t}}])),m.hash=u.length?u.reduce((function(e,t){return t.name||j(15),te(e,t.name)}),5381).toString():"",m}var ue=react__WEBPACK_IMPORTED_MODULE_1__.createContext(),le=ue.Consumer,de=react__WEBPACK_IMPORTED_MODULE_1__.createContext(),he=(de.Consumer,new Z),pe=ce();function fe(){return (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(ue)||he}function me(){return (0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(de)||pe}function ye(e){var t=(0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(e.stylisPlugins),n=t[0],s=t[1],c=fe(),u=(0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)((function(){var t=c;return e.sheet?t=e.sheet:e.target&&(t=t.reconstructWithOptions({target:e.target},!1)),e.disableCSSOMInjection&&(t=t.reconstructWithOptions({useCSSOMInjection:!1})),t}),[e.disableCSSOMInjection,e.sheet,e.target]),l=(0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)((function(){return ce({options:{prefix:!e.disableVendorPrefixes},plugins:n})}),[e.disableVendorPrefixes,n]);return (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)((function(){shallowequal__WEBPACK_IMPORTED_MODULE_2___default()(n,e.stylisPlugins)||s(e.stylisPlugins)}),[e.stylisPlugins]),react__WEBPACK_IMPORTED_MODULE_1__.createElement(ue.Provider,{value:u},react__WEBPACK_IMPORTED_MODULE_1__.createElement(de.Provider,{value:l}, false?0:e.children))}var ve=function(){function e(e,t){var n=this;this.inject=function(e,t){void 0===t&&(t=pe);var r=n.name+t.hash;e.hasNameForId(n.id,r)||e.insertRules(n.id,r,t(n.rules,r,"@keyframes"))},this.toString=function(){return j(12,String(n.name))},this.name=e,this.id="sc-keyframes-"+e,this.rules=t}return e.prototype.getName=function(e){return void 0===e&&(e=pe),this.name+e.hash},e}(),ge=/([A-Z])/,Se=/([A-Z])/g,we=/^ms-/,Ee=function(e){return"-"+e.toLowerCase()};function be(e){return ge.test(e)?e.replace(Se,Ee).replace(we,"-ms-"):e}var _e=function(e){return null==e||!1===e||""===e};function Ne(e,n,r,o){if(Array.isArray(e)){for(var s,i=[],a=0,c=e.length;a<c;a+=1)""!==(s=Ne(e[a],n,r,o))&&(Array.isArray(s)?i.push.apply(i,s):i.push(s));return i}if(_e(e))return"";if(N(e))return"."+e.styledComponentId;if(b(e)){if("function"!=typeof(l=e)||l.prototype&&l.prototype.isReactComponent||!n)return e;var u=e(n);return false&&0,Ne(u,n,r,o)}var l;return e instanceof ve?r?(e.inject(r,o),e.getName(o)):e:S(e)?function e(t,n){var r,o,s=[];for(var i in t)t.hasOwnProperty(i)&&!_e(t[i])&&(Array.isArray(t[i])&&t[i].isCss||b(t[i])?s.push(be(i)+":",t[i],";"):S(t[i])?s.push.apply(s,e(t[i],i)):s.push(be(i)+": "+(r=i,null==(o=t[i])||"boolean"==typeof o||""===o?"":"number"!=typeof o||0===o||r in _emotion_unitless__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z?String(o).trim():o+"px")+";"));return n?[n+" {"].concat(s,["}"]):s}(e):e.toString()}var Ae=function(e){return Array.isArray(e)&&(e.isCss=!0),e};function Ce(e){for(var t=arguments.length,n=new Array(t>1?t-1:0),r=1;r<t;r++)n[r-1]=arguments[r];return b(e)||S(e)?Ae(Ne(g(w,[e].concat(n)))):0===n.length&&1===e.length&&"string"==typeof e[0]?e:Ae(Ne(g(e,n)))}var Ie=/invalid hook call/i,Pe=new Set,Oe=function(e,t){if(false){ var o, n, r; }},Re=function(e,t,n){return void 0===n&&(n=E),e.theme!==n.theme&&e.theme||t||n.theme},De=/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~-]+/g,je=/(^-|-$)/g;function Te(e){return e.replace(De,"-").replace(je,"")}var xe=function(e){return ee(ne(e)>>>0)};function ke(e){return"string"==typeof e&&( true||0)}var Ve=function(e){return"function"==typeof e||"object"==typeof e&&null!==e&&!Array.isArray(e)},Be=function(e){return"__proto__"!==e&&"constructor"!==e&&"prototype"!==e};function ze(e,t,n){var r=e[n];Ve(t)&&Ve(r)?Me(r,t):e[n]=t}function Me(e){for(var t=arguments.length,n=new Array(t>1?t-1:0),r=1;r<t;r++)n[r-1]=arguments[r];for(var o=0,s=n;o<s.length;o++){var i=s[o];if(Ve(i))for(var a in i)Be(a)&&ze(e,i[a],a)}return e}var Ge=react__WEBPACK_IMPORTED_MODULE_1__.createContext(),Le=Ge.Consumer;function Fe(e){var t=s(Ge),n=i((function(){return function(e,t){if(!e)return j(14);if(b(e)){var n=e(t);return true?n:0}return Array.isArray(e)||"object"!=typeof e?j(8):t?v({},t,{},e):e}(e.theme,t)}),[e.theme,t]);return e.children?r.createElement(Ge.Provider,{value:n},e.children):null}var Ye={};function qe(e,t,n){var o=N(e),i=!ke(e),a=t.attrs,c=void 0===a?w:a,d=t.componentId,h=void 0===d?function(e,t){var n="string"!=typeof e?"sc":Te(e);Ye[n]=(Ye[n]||0)+1;var r=n+"-"+xe("5.3.5"+n+Ye[n]);return t?t+"-"+r:r}(t.displayName,t.parentComponentId):d,p=t.displayName,f=void 0===p?function(e){return ke(e)?"styled."+e:"Styled("+_(e)+")"}(e):p,g=t.displayName&&t.componentId?Te(t.displayName)+"-"+t.componentId:t.componentId||h,S=o&&e.attrs?Array.prototype.concat(e.attrs,c).filter(Boolean):c,A=t.shouldForwardProp;o&&e.shouldForwardProp&&(A=t.shouldForwardProp?function(n,r,o){return e.shouldForwardProp(n,r,o)&&t.shouldForwardProp(n,r,o)}:e.shouldForwardProp);var C,I=new se(n,g,o?e.componentStyle:void 0),P=I.isStatic&&0===c.length,O=function(e,t){return function(e,t,n,r){var o=e.attrs,i=e.componentStyle,a=e.defaultProps,c=e.foldedComponentIds,d=e.shouldForwardProp,h=e.styledComponentId,p=e.target; false&&0;var f=function(e,t,n){void 0===e&&(e=E);var r=v({},t,{theme:e}),o={};return n.forEach((function(e){var t,n,s,i=e;for(t in b(i)&&(i=i(r)),i)r[t]=o[t]="className"===t?(n=o[t],s=i[t],n&&s?n+" "+s:n||s):i[t]})),[r,o]}(Re(t,(0,react__WEBPACK_IMPORTED_MODULE_1__.useContext)(Ge),a)||E,t,o),y=f[0],g=f[1],S=function(e,t,n,r){var o=fe(),s=me(),i=t?e.generateAndInjectStyles(E,o,s):e.generateAndInjectStyles(n,o,s);return false&&0, false&&0,i}(i,r,y, false?0:void 0),w=n,_=g.$as||t.$as||g.as||t.as||p,N=ke(_),A=g!==t?v({},t,{},g):t,C={};for(var I in A)"$"!==I[0]&&"as"!==I&&("forwardedAs"===I?C.as=A[I]:(d?d(I,_emotion_is_prop_valid__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z,_):!N||(0,_emotion_is_prop_valid__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z)(I))&&(C[I]=A[I]));return t.style&&g.style!==t.style&&(C.style=v({},t.style,{},g.style)),C.className=Array.prototype.concat(c,h,S!==h?S:null,t.className,g.className).filter(Boolean).join(" "),C.ref=w,(0,react__WEBPACK_IMPORTED_MODULE_1__.createElement)(_,C)}(C,e,t,P)};return O.displayName=f,(C=react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(O)).attrs=S,C.componentStyle=I,C.displayName=f,C.shouldForwardProp=A,C.foldedComponentIds=o?Array.prototype.concat(e.foldedComponentIds,e.styledComponentId):w,C.styledComponentId=g,C.target=o?e.target:e,C.withComponent=function(e){var r=t.componentId,o=function(e,t){if(null==e)return{};var n,r,o={},s=Object.keys(e);for(r=0;r<s.length;r++)n=s[r],t.indexOf(n)>=0||(o[n]=e[n]);return o}(t,["componentId"]),s=r&&r+"-"+(ke(e)?e:Te(_(e)));return qe(e,v({},o,{attrs:S,componentId:s}),n)},Object.defineProperty(C,"defaultProps",{get:function(){return this._foldedDefaultProps},set:function(t){this._foldedDefaultProps=o?Me({},e.defaultProps,t):t}}), false&&(0),C.toString=function(){return"."+C.styledComponentId},i&&hoist_non_react_statics__WEBPACK_IMPORTED_MODULE_4___default()(C,e,{attrs:!0,componentStyle:!0,displayName:!0,foldedComponentIds:!0,shouldForwardProp:!0,styledComponentId:!0,target:!0,withComponent:!0}),C}var He=function(e){return function e(t,r,o){if(void 0===o&&(o=E),!(0,react_is__WEBPACK_IMPORTED_MODULE_0__.isValidElementType)(r))return j(1,String(r));var s=function(){return t(r,o,Ce.apply(void 0,arguments))};return s.withConfig=function(n){return e(t,r,v({},o,{},n))},s.attrs=function(n){return e(t,r,v({},o,{attrs:Array.prototype.concat(o.attrs,n).filter(Boolean)}))},s}(qe,e)};["a","abbr","address","area","article","aside","audio","b","base","bdi","bdo","big","blockquote","body","br","button","canvas","caption","cite","code","col","colgroup","data","datalist","dd","del","details","dfn","dialog","div","dl","dt","em","embed","fieldset","figcaption","figure","footer","form","h1","h2","h3","h4","h5","h6","head","header","hgroup","hr","html","i","iframe","img","input","ins","kbd","keygen","label","legend","li","link","main","map","mark","marquee","menu","menuitem","meta","meter","nav","noscript","object","ol","optgroup","option","output","p","param","picture","pre","progress","q","rp","rt","ruby","s","samp","script","section","select","small","source","span","strong","style","sub","summary","sup","table","tbody","td","textarea","tfoot","th","thead","time","title","tr","track","u","ul","var","video","wbr","circle","clipPath","defs","ellipse","foreignObject","g","image","line","linearGradient","marker","mask","path","pattern","polygon","polyline","radialGradient","rect","stop","svg","text","textPath","tspan"].forEach((function(e){He[e]=He(e)}));var $e=function(){function e(e,t){this.rules=e,this.componentId=t,this.isStatic=re(e),Z.registerId(this.componentId+1)}var t=e.prototype;return t.createStyles=function(e,t,n,r){var o=r(Ne(this.rules,t,n,r).join(""),""),s=this.componentId+e;n.insertRules(s,s,o)},t.removeStyles=function(e,t){t.clearRules(this.componentId+e)},t.renderStyles=function(e,t,n,r){e>2&&Z.registerId(this.componentId+e),this.removeStyles(e,n),this.createStyles(e,t,n,r)},e}();function We(e){for(var t=arguments.length,n=new Array(t>1?t-1:0),o=1;o<t;o++)n[o-1]=arguments[o];var i=Ce.apply(void 0,[e].concat(n)),a="sc-global-"+xe(JSON.stringify(i)),u=new $e(i,a);function l(e){var t=fe(),n=me(),o=s(Ge),l=c(t.allocateGSInstance(a)).current;return false&&0, false&&0,t.server&&h(l,e,t,o,n),d((function(){if(!t.server)return h(l,e,t,o,n),function(){return u.removeStyles(l,t)}}),[l,e,t,o,n]),null}function h(e,t,n,r,o){if(u.isStatic)u.renderStyles(e,O,n,o);else{var s=v({},t,{theme:Re(t,r,l.defaultProps)});u.renderStyles(e,s,n,o)}}return false&&0,r.memo(l)}function Ue(e){ false&&0;for(var t=arguments.length,n=new Array(t>1?t-1:0),r=1;r<t;r++)n[r-1]=arguments[r];var o=Ce.apply(void 0,[e].concat(n)).join(""),s=xe(o);return new ve(s,o)}var Je=function(){function e(){var e=this;this._emitSheetCSS=function(){var t=e.instance.toString();if(!t)return"";var n=q();return"<style "+[n&&'nonce="'+n+'"',A+'="true"','data-styled-version="5.3.5"'].filter(Boolean).join(" ")+">"+t+"</style>"},this.getStyleTags=function(){return e.sealed?j(2):e._emitSheetCSS()},this.getStyleElement=function(){var t;if(e.sealed)return j(2);var n=((t={})[A]="",t["data-styled-version"]="5.3.5",t.dangerouslySetInnerHTML={__html:e.instance.toString()},t),o=q();return o&&(n.nonce=o),[react__WEBPACK_IMPORTED_MODULE_1__.createElement("style",v({},n,{key:"sc-0-0"}))]},this.seal=function(){e.sealed=!0},this.instance=new Z({isServer:!0}),this.sealed=!1}var t=e.prototype;return t.collectStyles=function(e){return this.sealed?j(2):react__WEBPACK_IMPORTED_MODULE_1__.createElement(ye,{sheet:this.instance},e)},t.interleaveWithNodeStream=function(e){return j(3)},e}(),Xe=function(e){var t=r.forwardRef((function(t,n){var o=s(Ge),i=e.defaultProps,a=Re(t,o,i);return false&&0,r.createElement(e,v({},t,{theme:a,ref:n}))}));return y(t,e),t.displayName="WithTheme("+_(e)+")",t},Ze=function(){return s(Ge)},Ke={StyleSheet:Z,masterSheet:he}; false&&0, false&&(0);/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (He);
 //# sourceMappingURL=styled-components.browser.esm.js.map
+
+
+/***/ }),
+
+/***/ 44:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var React = __webpack_require__(7294);
+
+function Icon (props) {
+    return React.createElement("svg",props,[React.createElement("path",{"fill":"#000","d":"M14.455 14.455A6.28 6.28 0 0 0 16.3 10a6.28 6.28 0 0 0-1.845-4.455l.636-.636a7.2 7.2 0 0 1 0 10.182l-.636-.636ZM5.545 14.455l-.636.636a7.2 7.2 0 0 1 0-10.182l.636.636A6.28 6.28 0 0 0 3.7 10a6.28 6.28 0 0 0 1.845 4.455Z","key":0}),React.createElement("path",{"fill":"#000","d":"M14.5 10a4.486 4.486 0 0 1-1.318 3.182l.636.636a5.399 5.399 0 0 0 0-7.637l-.636.637A4.486 4.486 0 0 1 14.5 10ZM5.5 10c0-1.243.504-2.368 1.318-3.182l-.636-.636a5.4 5.4 0 0 0 0 7.636l.636-.636A4.486 4.486 0 0 1 5.5 10Z","key":1}),React.createElement("path",{"fill":"#000","d":"M11.91 11.909c.488-.489.79-1.164.79-1.91 0-.745-.302-1.42-.79-1.908l.636-.637a3.601 3.601 0 0 1 0 5.092l-.637-.637ZM8.09 11.91l-.635.636a3.6 3.6 0 0 1 0-5.092l.636.637A2.692 2.692 0 0 0 7.3 10c-.001.745.301 1.42.79 1.91Z","key":2}),React.createElement("path",{"fill":"#000","fillRule":"evenodd","d":"M12 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm-1 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z","clipRule":"evenodd","key":3})]);
+}
+
+Icon.defaultProps = {"width":"1em","height":"1em","fill":"none","data-icon-name":"rfid-high","viewBox":"0 0 20 20","className":"sw-amiga-icon sw-amiga-icon--monochrome","style":{"margin":"0px 0px"}};
+
+module.exports = Icon;
+
+Icon.default = Icon;
 
 
 /***/ }),

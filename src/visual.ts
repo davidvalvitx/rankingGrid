@@ -19,18 +19,25 @@ import { RankingGrid, initialState, State } from "./component";
 import { VisualSettings } from "./settings";
 import "./../style/visual.less";
 
+import { dataViewWildcard } from "powerbi-visuals-utils-dataviewutils";
+import VisualEnumerationInstanceKinds = powerbi.VisualEnumerationInstanceKinds;
+import ISelectionIdBuilder =  powerbi.extensibility.ISelectionId
+import ISelectionManager =  powerbi.extensibility.ISelectionManager
+
 
 export class Visual implements IVisual {
     private settings: VisualSettings;
     private target: HTMLElement;
     private reactRoot: React.ComponentElement<any, any>;
     private host: IVisualHost;
+    private selectionIdBuilder: ISelectionIdBuilder;
+    private selectionManager: ISelectionManager;
 
     constructor(options: VisualConstructorOptions) {
         this.reactRoot = React.createElement(RankingGrid, {});
         this.target = options.element;
         this.host = options.host;
-        // options.element.style.overflow = 'auto';
+        this.selectionManager = this.host.createSelectionManager()
 
         ReactDOM.render(this.reactRoot, this.target);
     }
@@ -48,94 +55,122 @@ export class Visual implements IVisual {
         let KPIValues = dataView.categorical.values[0].values;
         let RankingValues = dataView.categorical.values[1].values;
         let secRank = dataView.categorical.values[2].values;
+        let Flag = dataView.categorical.values[3].values;
 
-        const items: State = { Imagen: [], KPI: [], Ranking: [], secRank: [] }
-        // const items: State = { Imagen: [], KPI: [], Ranking: [] }
+        interface IDatapoint extends State {}
+
+        const Datapoints: IDatapoint = {
+            data: []
+        }
 
         for (let i = 0; i < categoryValues.length; i++) {
 
-            let image: string = categoryValues[i].valueOf() as string;
-            let kpi: number = KPIValues[i].valueOf() as number;
-            let rank: number = RankingValues[i].valueOf() as number;
-            let rankSec: number = secRank[i].valueOf() as number;
+            const categorySelectionId = this.host.createSelectionIdBuilder()
+            .withCategory( categoryColumn, i)
+            .createSelectionId();
 
-
-            items.Imagen.push(image)
-            items.KPI.push(kpi)
-            items.Ranking.push(rank)
-            items.secRank.push(rankSec)
+            Datapoints.data.push({
+                Imagen: categoryValues[i].valueOf() as string,
+                KPI: KPIValues[i].valueOf() as number,
+                Ranking: RankingValues[i].valueOf() as number,
+                secRank: secRank[i].valueOf() as number,
+                Flag: Flag[i].valueOf() as number,
+                selectionId: categorySelectionId
+            })
         }
-        return {
-            items
 
-        }
+        return {Datapoints}
     }
 
 
     public enumerateObjectInstances(
         options: EnumerateVisualObjectInstancesOptions
     ): VisualObjectInstance[] | VisualObjectInstanceEnumerationObject {
+        let objectName = options.objectName;
+        let objectEnumeration: VisualObjectInstance[] = [];
+
+        switch(objectName) {
+            case 'ranking':
+                objectEnumeration.push({
+                    objectName: objectName,
+                    properties: {
+                        colorHeader: this.settings.ranking.colorHeader
+                    },
+                    propertyInstanceKind: {
+                        colorHeader: VisualEnumerationInstanceKinds.ConstantOrRule
+                    },
+                    altConstantValueSelector: null,
+                    selector: dataViewWildcard.createDataViewWildcardSelector(dataViewWildcard.DataViewWildcardMatchingOption.InstancesAndTotals)
+                });
+                break;
+        };
 
         return VisualSettings.enumerateObjectInstances(this.settings || VisualSettings.getDefault(), options);
+        // return objectEnumeration;
+    }
+
+    private visualTransform = (dataview: DataView) => {
+        this.settings = VisualSettings.parse(dataview) as VisualSettings;
+
+        if (dataview) {
+            var metadata: any = dataview.metadata;
+
+            if (metadata && metadata.objects && metadata.objects.ranking && metadata.objects.ranking.colorHeader) {
+                this.settings.ranking.colorHeader = metadata.objects.ranking.colorHeader.solid.color
+            }
+
+        }
+    }
+
+    public selectedValue = (obj, number: any) => {
+        this.selectionManager.select(obj.data[number].selectionId)
+    };
+    
+    public getMoreData = () => {
+        this.host.fetchMoreData();
     }
 
     public update(options: VisualUpdateOptions) {
 
+        
         if (options && options.dataViews && options.dataViews[0]) {
             const dataView: DataView = options.dataViews[0];
+            this.visualTransform(dataView)
+
             const categoricalDataView: DataViewCategorical = dataView.categorical;
             const categoryColumn = categoricalDataView.categories[0];
             const categoryValues = categoryColumn.values;
 
-            // To fetch more data:
+
             this.settings = VisualSettings.parse(dataView) as VisualSettings;
             const indicador = this.settings.indicador;
             const ranking = this.settings.ranking;
             const scroll = this.settings.scrollbar;
 
+            const data = this.dataExtraction(dataView).Datapoints;
+            const lastCall = (dataView.metadata.segment) ? false : true;
 
-            if (dataView.metadata.segment) {
+            const stopFetch = !this.host.fetchMoreData()
 
-                let stopFetch = false;
-                stopFetch = !this.host.fetchMoreData();
-                const data = this.dataExtraction(dataView).items;
-
-                data.scrollColor = scroll && scroll.scrollBar ? scroll.scrollBar : undefined
-                data.textSize = indicador && indicador.textSize ? indicador.textSize : undefined
-                data.colorText = indicador && indicador.colorText ? indicador.colorText : undefined
-
-                data.size = ranking && ranking.tamanoRank ? ranking.tamanoRank : undefined
-                data.color = ranking && ranking.colorRank ? ranking.colorRank : undefined
-                data.tamanoRank = ranking && ranking.tamanoNumero ? ranking.tamanoNumero : undefined
-                data.textSizeRank = ranking && ranking.textSize ? ranking.textSize : undefined
-                data.turnCards = ranking && ranking.turnCards ? ranking.turnCards : undefined
-
-                RankingGrid.update(data);
-                // console.log(`Cargado ${categoryValues.length}`);
-
-                // console.log(`Paro?: ${stopFetch}`);
-
-                if (stopFetch) {
-                    // console.log(`Cargado ${categoryValues.length}`);
-
-
-                } else {
-                    // console.log('Listo');
-                }
+            if (!lastCall) {
+                this.host.fetchMoreData();
+            } else {
+                stopFetch
             }
-            const data = this.dataExtraction(dataView).items;
 
+            
             data.scrollColor = scroll && scroll.scrollBar ? scroll.scrollBar : undefined
             data.textSize = indicador && indicador.textSize ? indicador.textSize : undefined
             data.colorText = indicador && indicador.colorText ? indicador.colorText : undefined
 
             data.turnCards = ranking && ranking.turnCards ? ranking.turnCards : undefined
-            data.tamanoRank = ranking && ranking.tamanoNumero ? ranking.tamanoNumero : undefined
             data.size = ranking && ranking.tamanoRank ? ranking.tamanoRank : undefined
             data.color = ranking && ranking.colorRank ? ranking.colorRank : undefined
             data.textSizeRank = ranking && ranking.textSize ? ranking.textSize : undefined
+            // data.colorHeader = ranking && ranking.colorHeader ? ranking.colorHeader : undefined
 
             console.log(data);
+            // this.selectedValue(data, 27)
             RankingGrid.update(data);
 
         } else {

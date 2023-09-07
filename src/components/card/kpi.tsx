@@ -6,9 +6,9 @@ interface ColorKPI {
     textSize?: number
 }
 
+
+
 const KPIBox = styled.div`
-position: absolute;
-bottom: 0;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -18,23 +18,25 @@ height: 42px;
 border-top: 1px solid black;
 `
 
-const KPIText = styled.p<ColorKPI>`
+const KPIText = styled.div<ColorKPI>`
 margin: 0;
 text-transform: uppercase;
 vertical-align: middle;
 line-height: 20px;
 font-weight: 600;
-margin-left: 0.8em;
 color: ${(props) => props.color};
 `
 
 const KPI = (props) => {
     return (
-        <KPIBox>
-            <KPIText color={props.color} textSize={props.textSize} style={{ "fontSize": props.textSize }}>
-                {props.children}
-            </KPIText>
-        </KPIBox>
+            // <KPIBox style={props.flag === 7901 ? {"backgroundColor": "#fcba03"} : {"backgroundColor": "#FFFFFF"}}>
+            <KPIBox>
+                <KPIText color={props.color} textSize={props.textSize} style={{ "fontSize": props.textSize}}>
+                    {props.children}
+                </KPIText>            
+            </KPIBox>
+
+
     )
 }
 

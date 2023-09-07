@@ -11,9 +11,14 @@ export declare class Visual implements IVisual {
     private target;
     private reactRoot;
     private host;
+    private selectionIdBuilder;
+    private selectionManager;
     constructor(options: VisualConstructorOptions);
     private clear;
     private dataExtraction;
     enumerateObjectInstances(options: EnumerateVisualObjectInstancesOptions): VisualObjectInstance[] | VisualObjectInstanceEnumerationObject;
+    private visualTransform;
+    selectedValue: (obj: any, number: any) => void;
+    getMoreData: () => void;
     update(options: VisualUpdateOptions): void;
 }

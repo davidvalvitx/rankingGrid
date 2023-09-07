@@ -1,5 +1,6 @@
 interface Layout {
-    size: number;
+    size?: number;
+    color?: string;
 }
 export declare const Info: import("styled-components").StyledComponent<"div", any, {}, never>;
 export declare const Datos: import("styled-components").StyledComponent<"div", any, Layout, never>;

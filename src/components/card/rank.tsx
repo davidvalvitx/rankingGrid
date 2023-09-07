@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 interface Rank {
-    tamano?: number
+    tamano?: number,
+    color?: string
 }
 
 export const Rank = styled.div<Rank>`
@@ -13,17 +14,18 @@ min-height: 15px;
 min-width: 15px;
 color: white;
 padding: 0.5em;
-font-weight: 100;
-border: 1px solid black;
-// min-width: ${(props) => props.tamano};
+font-weight: 400;
+border-bottom: 1px solid black;
+min-width: ${(props) => props.tamano};
 // height: ${(props) => props.tamano};
+text-overflow: ellipsis;
 `
 
 export const RankGrey = styled(Rank)`
 margin-right: auto;
 width: 100%;
-background-color: rgba(245, 245, 245, 1);
-border: 1px solid black;
+background-color: ${(props) => props.color};
+border-bottom: 1px solid black;
 color: black;
 font-weight: 400;
 `

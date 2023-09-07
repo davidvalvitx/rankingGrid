@@ -1,18 +1,26 @@
 import * as React from "react";
+import "./../style/visual.css";
+import powerbi from "powerbi-visuals-api";
+import ISelectionId = powerbi.visuals.ISelectionId;
+interface Data {
+    Imagen?: string;
+    KPI?: number;
+    Ranking?: number;
+    secRank?: number;
+    Flag?: number;
+    selectionId?: ISelectionId;
+}
 export interface State {
-    Imagen: string[];
-    KPI: number[];
-    Ranking: number[];
-    secRank: number[];
+    data?: Data[];
     size?: number;
     color?: string;
     textSize?: number;
     colorText?: string;
-    tamanoRank?: number;
     textSizeRank?: number;
     scrollColor?: string;
     turnCards?: boolean;
     tamanoSlicer?: number;
+    colorHeader?: string;
 }
 export declare const initialState: State;
 export declare class RankingGrid extends React.Component<{}, State> {
@@ -22,6 +30,7 @@ export declare class RankingGrid extends React.Component<{}, State> {
     state: State;
     componentWillMount(): void;
     componentWillUnmount(): void;
+    handleSelection(selectionId: any): void;
     render(): JSX.Element;
 }
 export default RankingGrid;

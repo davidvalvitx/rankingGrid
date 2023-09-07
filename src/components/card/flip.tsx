@@ -9,9 +9,7 @@ interface Flip {
 }
 
 const Producto = styled.div<Flip>`
-// border: 1px solid transparent;
-// padding: 1px;
-// margin-bottom: 20%;
+
 // max-width: ${(props) => props.size};
 background-color: transparent;
 width:${(props) => props.size}px;
@@ -26,7 +24,6 @@ border: 1px solid black;
 text-align: center;
 transition: transform 0.6s;
 transform-style: preserve-3d;
-// box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 ${props => props.turnCards ? css`
 ${Producto}: hover & {
     transform: rotateY(180deg);
