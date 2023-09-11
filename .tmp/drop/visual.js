@@ -327,7 +327,7 @@ color: white;
 padding: 0.4em;
 font-weight: 400;
 border-bottom: 1px solid black;
-// min-width: ${(props) => props.tamano};
+min-width: 22px;
 // height: ${(props) => props.tamano};
 text-overflow: ellipsis;
 `;
