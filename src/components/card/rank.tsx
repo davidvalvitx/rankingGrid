@@ -11,12 +11,12 @@ align-self: flex-start;
 align-content: center;
 justify-content: center;
 min-height: 15px;
-min-width: 15px;
+max-width: 22px;
 color: white;
-padding: 0.5em;
+padding: 0.4em;
 font-weight: 400;
 border-bottom: 1px solid black;
-min-width: ${(props) => props.tamano};
+// min-width: ${(props) => props.tamano};
 // height: ${(props) => props.tamano};
 text-overflow: ellipsis;
 `
@@ -28,4 +28,5 @@ background-color: ${(props) => props.color};
 border-bottom: 1px solid black;
 color: black;
 font-weight: 400;
+max-width: 100%;
 `
