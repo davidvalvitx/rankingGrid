@@ -23,7 +23,10 @@ export interface State {
     colorHeader?: string;
 }
 export declare const initialState: State;
-export declare class RankingGrid extends React.Component<{}, State> {
+export interface Pole {
+    getMoreData: () => void;
+}
+export declare class RankingGrid extends React.Component<Pole, State> {
     constructor(props: any);
     private static updateCallback;
     static update(newState: State): void;

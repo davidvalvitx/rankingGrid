@@ -1,181 +1,181 @@
 {
-    "dataRoles": [
-        {
-            "displayName": "Imagen",
-            "name": "image",
-            "kind": "Grouping"
-        },
-        {
-            "displayName": "Indicador",
-            "name": "kpi",
-            "kind": "Measure"
-        },
-        {
-            "displayName": "Raking",
-            "name": "rank",
-            "kind": "Measure"
-        },
-        {
-            "displayName": "Ranking Secundario",
-            "name": "secondaryrank",
-            "kind": "Measure"
-        },
-        {
-            "displayName": "Flag",
-            "name": "flag",
-            "kind": "Measure"
-        }
-    ],
-    "objects": {
-        "ranking": {
-            "displayName": "Ranking",
-            "properties": {
-                "tamanoRank": {
-                    "displayName": "Tamaño Tarjeta",
-                    "type": {
-                        "numeric": true
-                    }
-                },
-                "colorRank": {
-                    "displayName": "Color Ranking",
-                    "type": {
-                        "fill": {
-                            "solid": {
-                                "color": true
-                            }
-                        }
-                    }
-                },
-                "textSize": {
-                    "displayName": "Tamaño Fuente Ranking",
-                    "type": {
-                        "formatting": {
-                            "fontSize": true
-                        }
-                    }
-                },
-                "turnCards": {
-                    "displayName": "Girar Cards",
-                    "type": {
-                        "bool": true
-                    }
-                },
-                "colorHeader": {
-                    "displayName": "Color Header",
-                    "type": {
-                        "fill": {
-                            "solid": {
-                                "color": true
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "indicador": {
-            "displayName": "Indicador",
-            "properties": {
-                "textSize": {
-                    "displayName": "Tamaño",
-                    "type": {
-                        "formatting": {
-                            "fontSize": true
-                        }
-                    }
-                },
-                "colorText": {
-                    "displayName": "Color Texto",
-                    "type": {
-                        "fill": {
-                            "solid": {
-                                "color": true
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "scrollbar": {
-            "displayName": "Scroll Bar",
-            "properties": {
-                "scrollBar": {
-                    "displayName": "Color",
-                    "type": {
-                        "fill": {
-                            "solid": {
-                                "color": true
-                            }
-                        }
-                    }
-                }
-            }
-        }
+  "dataRoles": [
+    {
+      "displayName": "Imagen",
+      "name": "image",
+      "kind": "Grouping"
     },
-    "dataViewMappings": [
-        {
-            "conditions": [
-                {
-                    "image": {
-                        "max": 1
-                    },
-                    "kpi": {
-                        "max": 1
-                    },
-                    "rank": {
-                        "max": 1
-                    },
-                    "secondaryrank": {
-                        "max": 1
-                    },
-                    "flag": {
-                        "max": 1
-                    }
-                }
-            ],
-            "categorical": {
-                "categories": {
-                    "for": {
-                        "in": "image"
-                    },
-                    "dataReductionAlgorithm": {
-                        "window": {
-                            "count": 200
-                        }
-                    }
-                },
-                "values": {
-                    "select": [
-                        {
-                            "bind": {
-                                "to": "kpi"
-                            }
-                        },
-                        {
-                            "bind": {
-                                "to": "rank"
-                            }
-                        },
-                        {
-                            "bind": {
-                                "to": "secondaryrank"
-                            }
-                        },
-                        {
-                            "bind": {
-                                "to": "flag"
-                            }
-                        }
-                    ],
-                    "dataReductionAlgorithm": {
-                        "window": {
-                            "count": 200
-                        }
-                    }
-                }
-            }
-        }
-    ],
-    "sorting": {
-        "default": {}
+    {
+      "displayName": "Indicador",
+      "name": "kpi",
+      "kind": "Measure"
+    },
+    {
+      "displayName": "Raking",
+      "name": "rank",
+      "kind": "Measure"
+    },
+    {
+      "displayName": "Ranking Secundario",
+      "name": "secondaryrank",
+      "kind": "Measure"
+    },
+    {
+      "displayName": "Flag",
+      "name": "flag",
+      "kind": "Measure"
     }
+  ],
+  "objects": {
+    "ranking": {
+      "displayName": "Ranking",
+      "properties": {
+        "tamanoRank": {
+          "displayName": "Tamaño Tarjeta",
+          "type": {
+            "numeric": true
+          }
+        },
+        "colorRank": {
+          "displayName": "Color Ranking",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "textSize": {
+          "displayName": "Tamaño Fuente Ranking",
+          "type": {
+            "formatting": {
+              "fontSize": true
+            }
+          }
+        },
+        "turnCards": {
+          "displayName": "Girar Cards",
+          "type": {
+            "bool": true
+          }
+        },
+        "colorHeader": {
+          "displayName": "Color Header",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "indicador": {
+      "displayName": "Indicador",
+      "properties": {
+        "textSize": {
+          "displayName": "Tamaño",
+          "type": {
+            "formatting": {
+              "fontSize": true
+            }
+          }
+        },
+        "colorText": {
+          "displayName": "Color Texto",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "scrollbar": {
+      "displayName": "Scroll Bar",
+      "properties": {
+        "scrollBar": {
+          "displayName": "Color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "dataViewMappings": [
+    {
+      "conditions": [
+        {
+          "image": {
+            "max": 1
+          },
+          "kpi": {
+            "max": 1
+          },
+          "rank": {
+            "max": 1
+          },
+          "secondaryrank": {
+            "max": 1
+          },
+          "flag": {
+            "max": 1
+          }
+        }
+      ],
+      "categorical": {
+        "categories": {
+          "for": {
+            "in": "image"
+          },
+          "dataReductionAlgorithm": {
+            "window": {
+              "count": 200
+            }
+          }
+        },
+        "values": {
+          "select": [
+            {
+              "bind": {
+                "to": "kpi"
+              }
+            },
+            {
+              "bind": {
+                "to": "rank"
+              }
+            },
+            {
+              "bind": {
+                "to": "secondaryrank"
+              }
+            },
+            {
+              "bind": {
+                "to": "flag"
+              }
+            }
+          ],
+          "dataReductionAlgorithm": {
+            "window": {
+              "count": 200
+            }
+          }
+        }
+      }
+    }
+  ],
+  "sorting": {
+    "default": {}
+  }
 }

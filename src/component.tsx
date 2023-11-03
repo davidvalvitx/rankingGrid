@@ -51,7 +51,11 @@ export const initialState: State = {
 
 }
 
-export class RankingGrid extends React.Component<{}, State>{
+export interface Pole {
+    getMoreData: () => void
+}
+
+export class RankingGrid extends React.Component<Pole, State>{
     
     constructor(props: any) {
         super(props);
@@ -97,6 +101,10 @@ export class RankingGrid extends React.Component<{}, State>{
             }, 200);
         };
 
+        const handleFlag = (x) => {
+            return x ? x : 0
+        }
+
         return (
             <>
                 <div className="App">
@@ -137,9 +145,9 @@ export class RankingGrid extends React.Component<{}, State>{
                                                     </Datos>
                                                 <div style={{ "position": "relative", "height": alto }}>
                                                         <Image size={alto} key={i} src={x.Imagen} alt="" />
-                                                        <Marca flag={x.Flag}></Marca>
+                                                        <Marca flag={handleFlag(x.Flag)}></Marca>
                                                 </div>
-                                                    <KPI color={colorText} textSize={textSize} flag={x.Flag}>
+                                                    <KPI color={colorText} textSize={textSize} flag={handleFlag(x.Flag)}>
                                                             {x.KPI.toLocaleString(undefined,
                                                                 { minimumFractionDigits: 0, maximumFractionDigits: 2 })}
                                                     </KPI>
@@ -149,9 +157,9 @@ export class RankingGrid extends React.Component<{}, State>{
                                 }
                                 )}
                         </GridR>
-                        {/* <div className="btw--wrap">
-                                <button onClick={() => console.log("salh")} className="btn">Pulsa aqui</button>
-                                </div> */}
+                        <div className="btw--wrap">
+                                <button onClick={this.props.getMoreData} className="btn">Pulsa aqui</button>
+                        </div>
                     </Scrollbar>
                 </div >
             </>

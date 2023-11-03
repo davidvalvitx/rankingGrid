@@ -5,8 +5,8 @@ import VisualConstructorOptions = powerbiVisualsApi.extensibility.visual.VisualC
 import DialogConstructorOptions = powerbiVisualsApi.extensibility.visual.DialogConstructorOptions;
 var powerbiKey: any = "powerbi";
 var powerbi: any = window[powerbiKey];
-var rankingGrid5026DF9488DA4528B23667923CEF3213: IVisualPlugin = {
-    name: 'rankingGrid5026DF9488DA4528B23667923CEF3213',
+var rankingGrid5026DF9488DA4528B23667923CEF3213_DEBUG: IVisualPlugin = {
+    name: 'rankingGrid5026DF9488DA4528B23667923CEF3213_DEBUG',
     displayName: 'RankingGrid',
     class: 'Visual',
     apiVersion: '3.8.0',
@@ -27,6 +27,6 @@ var rankingGrid5026DF9488DA4528B23667923CEF3213: IVisualPlugin = {
 if (typeof powerbi !== "undefined") {
     powerbi.visuals = powerbi.visuals || {};
     powerbi.visuals.plugins = powerbi.visuals.plugins || {};
-    powerbi.visuals.plugins["rankingGrid5026DF9488DA4528B23667923CEF3213"] = rankingGrid5026DF9488DA4528B23667923CEF3213;
+    powerbi.visuals.plugins["rankingGrid5026DF9488DA4528B23667923CEF3213_DEBUG"] = rankingGrid5026DF9488DA4528B23667923CEF3213_DEBUG;
 }
-export default rankingGrid5026DF9488DA4528B23667923CEF3213;
+export default rankingGrid5026DF9488DA4528B23667923CEF3213_DEBUG;
