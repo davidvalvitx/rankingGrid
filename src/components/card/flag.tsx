@@ -1,37 +1,28 @@
 import styled from "styled-components";
 import * as React from "react";
-import Icon from "-!svg-react-loader!./icon.svg";
 
 interface Flag {
-    flag?: number
+  flag?: number;
 }
-
-const Icon2 = styled(Icon)`
-height: 2em;
-width: 2em;
-`
 
 const Flag = styled.div<Flag>`
-position: absolute;
-top: 0;
-right: 0;
-z-index: 99;
-width: 42px;
-height: 42px;
-margin-left: auto;
-margin-right: 0.2em;
-display: ${(props) =>props.flag === 1 ? null : "none"};
-`
-
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  padding: 6px 10px;
+  background-color: #79736d;
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+  display: ${(props) => (props.flag == 1 ? null : "none")};
+`;
 
 const Marca = (props) => {
-    return (
-            <Flag flag={props.flag}>
-                 <Icon2></Icon2>
-            </Flag>
-
-
-    )
-}
-export default Marca
-
+  return (
+    <Flag flag={props.flag}>
+      <p>PROMO</p>
+    </Flag>
+  );
+};
+export default Marca;

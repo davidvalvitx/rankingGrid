@@ -33,12 +33,12 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.25",
-    "powerbi-visuals-api": "~3.8.0",
+    "powerbi-visuals-api": "~5.6.0",
     "process": "^0.11.10",
     "svg-react-loader": "^0.4.6",
     "ts-loader": "6.1.0",
     "tslint": "^5.18.0",
     "tslint-microsoft-contrib": "^6.2.0",
-    "typescript": "3.6.3"
+    "typescript": "^5.7.2"
   }
 }

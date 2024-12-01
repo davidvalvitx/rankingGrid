@@ -1,4 +1,13 @@
 {
+    "privileges": [
+        {
+            "name": "WebAccess",
+            "essential": true,
+            "parameters": [
+                "https://*.inditex.com"
+            ]
+        }
+    ],
     "dataRoles": [
         {
             "displayName": "Imagen",

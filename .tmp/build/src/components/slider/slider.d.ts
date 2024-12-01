@@ -1,7 +1,7 @@
 import * as React from "react";
 export declare const SlideZara: import("@emotion/styled").StyledComponent<{
-    color?: "primary" | "secondary";
-    classes?: Partial<import("@mui/base").SliderUnstyledClasses> & {
+    color?: import("@mui/types").OverridableStringUnion<"primary" | "secondary", import("@mui/material/Slider").SliderPropsColorOverrides>;
+    classes?: import("@mui/base").SliderUnstyledTypeMap["props"]["classes"] & {
         colorPrimary?: string;
         colorSecondary?: string;
         sizeSmall?: string;
@@ -9,7 +9,7 @@ export declare const SlideZara: import("@emotion/styled").StyledComponent<{
         thumbColorSecondary?: string;
         thumbSizeSmall?: string;
     };
-    size?: "small" | "medium";
+    size?: import("@mui/types").OverridableStringUnion<"small" | "medium", import("@mui/material/Slider").SliderPropsSizeOverrides>;
     sx?: import("@mui/material/styles").SxProps<import("@mui/material/styles").Theme>;
 } & {
     'aria-label'?: string;
@@ -17,38 +17,24 @@ export declare const SlideZara: import("@emotion/styled").StyledComponent<{
     'aria-valuetext'?: string;
     classes?: Partial<import("@mui/base").SliderUnstyledClasses>;
     components?: {
-        Root?: React.ElementType<any>;
-        Track?: React.ElementType<any>;
-        Rail?: React.ElementType<any>;
-        Thumb?: React.ElementType<any>;
-        Mark?: React.ElementType<any>;
-        MarkLabel?: React.ElementType<any>;
-        ValueLabel?: React.ElementType<any>;
-        Input?: React.ElementType<any>;
+        Root?: React.ElementType;
+        Track?: React.ElementType;
+        Rail?: React.ElementType;
+        Thumb?: React.ElementType;
+        Mark?: React.ElementType;
+        MarkLabel?: React.ElementType;
+        ValueLabel?: React.ElementType;
+        Input?: React.ElementType;
     };
     componentsProps?: {
-        root?: Pick<React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, "key" | keyof React.HTMLAttributes<HTMLSpanElement>> & {
-            ref?: React.Ref<HTMLSpanElement>;
-        } & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
-        track?: Pick<React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, "key" | keyof React.HTMLAttributes<HTMLSpanElement>> & {
-            ref?: React.Ref<HTMLSpanElement>;
-        } & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
-        rail?: Pick<React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, "key" | keyof React.HTMLAttributes<HTMLSpanElement>> & {
-            ref?: React.Ref<HTMLSpanElement>;
-        } & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
-        thumb?: Pick<React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, "key" | keyof React.HTMLAttributes<HTMLSpanElement>> & {
-            ref?: React.Ref<HTMLSpanElement>;
-        } & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
-        mark?: Pick<React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, "key" | keyof React.HTMLAttributes<HTMLSpanElement>> & {
-            ref?: React.Ref<HTMLSpanElement>;
-        } & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
-        markLabel?: Pick<React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, "key" | keyof React.HTMLAttributes<HTMLSpanElement>> & {
-            ref?: React.Ref<HTMLSpanElement>;
-        } & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
-        valueLabel?: import("@mui/base").ValueLabelUnstyledProps & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
-        input?: Pick<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "key" | keyof React.InputHTMLAttributes<HTMLInputElement>> & {
-            ref?: React.Ref<HTMLInputElement>;
-        } & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
+        root?: React.ComponentPropsWithRef<"span"> & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
+        track?: React.ComponentPropsWithRef<"span"> & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
+        rail?: React.ComponentPropsWithRef<"span"> & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
+        thumb?: React.ComponentPropsWithRef<"span"> & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
+        mark?: React.ComponentPropsWithRef<"span"> & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
+        markLabel?: React.ComponentPropsWithRef<"span"> & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
+        valueLabel?: React.ComponentPropsWithRef<typeof import("@mui/base").SliderValueLabelUnstyled> & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
+        input?: React.ComponentPropsWithRef<"input"> & import("@mui/base").SliderUnstyledComponentsPropsOverrides;
     };
     defaultValue?: number | number[];
     disabled?: boolean;
@@ -61,16 +47,16 @@ export declare const SlideZara: import("@emotion/styled").StyledComponent<{
     min?: number;
     name?: string;
     onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
-    onChangeCommitted?: (event: Event | React.SyntheticEvent<Element, Event>, value: number | number[]) => void;
-    orientation?: "vertical" | "horizontal";
+    onChangeCommitted?: (event: React.SyntheticEvent | Event, value: number | number[]) => void;
+    orientation?: "horizontal" | "vertical";
     scale?: (value: number) => number;
-    step?: number;
+    step?: number | null;
     tabIndex?: number;
-    track?: false | "normal" | "inverted";
+    track?: "normal" | false | "inverted";
     value?: number | number[];
-    valueLabelDisplay?: "on" | "off" | "auto";
+    valueLabelDisplay?: "on" | "auto" | "off";
     valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
 } & Omit<Pick<React.DetailedHTMLProps<React.HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>, "key" | keyof React.HTMLAttributes<HTMLSpanElement>> & {
     ref?: React.Ref<HTMLSpanElement>;
-}, "track" | "size" | "color" | "name" | "defaultValue" | "tabIndex" | "aria-label" | "aria-labelledby" | "aria-valuetext" | "onChange" | "max" | "min" | "orientation" | "scale" | "disabled" | "step" | "value" | "classes" | "sx" | "components" | "componentsProps" | "disableSwap" | "getAriaLabel" | "getAriaValueText" | "isRtl" | "marks" | "onChangeCommitted" | "valueLabelDisplay" | "valueLabelFormat"> & import("@mui/system").MUIStyledCommonProps<import("@mui/material/styles").Theme>, {}, {}>;
+}, "track" | "size" | "color" | "name" | "max" | "min" | "tabIndex" | "orientation" | "scale" | "aria-label" | "aria-labelledby" | "aria-valuetext" | "onChange" | "defaultValue" | "disabled" | "step" | "value" | "classes" | "sx" | "components" | "componentsProps" | "disableSwap" | "getAriaLabel" | "getAriaValueText" | "isRtl" | "marks" | "onChangeCommitted" | "valueLabelDisplay" | "valueLabelFormat"> & import("@mui/system").MUIStyledCommonProps<import("@mui/material/styles").Theme>, {}, {}>;
 export declare const GridSlider: (props: any) => JSX.Element;
